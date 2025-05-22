@@ -9,12 +9,12 @@ module.exports = {
             colors: {
                 primary: '#3B82F6',
                 primaryDark: '#2560E8',
-                colorBg: 'F1F5F9',
+                colorBg: '#F1F5F9',
                 colorSurface: '#FFFFFF',
-                colorSuccess: '10B981',
+                colorSuccess: '#10B981',
                 colorError: '#EF4444',
                 colorBorder: '#E5E7EB',
-                colorText: '1E293B',
+                colorText: '#1E293B',
                 colorTextLight: '#6B7280',
             },
             text: {
