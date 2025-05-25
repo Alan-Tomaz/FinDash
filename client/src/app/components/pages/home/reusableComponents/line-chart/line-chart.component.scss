@@ -1,0 +1,23 @@
+// Change label colors for light and dark themes
+// axes and ticks labels
+:host ::ng-deep .dark .x.axis text,
+:host ::ng-deep .dark .y.axis text,
+:host ::ng-deep .dark .legend-label-text {
+  fill: #F1F5F9 !important; 
+  color: #F1F5F9 !important;
+}
+
+:host ::ng-deep .light .x.axis text,
+:host ::ng-deep .light .y.axis text,
+:host ::ng-deep .light .legend-label-text {
+  fill: #1E293B !important;
+  color: #1E293B !important;
+}
+
+// XY axis labels
+:host ::ng-deep .dark .axis-label {
+  fill: #F1F5F9 !important;
+}
+:host ::ng-deep .light .axis-label {
+  fill: #1E293B !important;
+}

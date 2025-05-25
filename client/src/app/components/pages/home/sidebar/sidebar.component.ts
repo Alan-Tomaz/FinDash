@@ -76,7 +76,7 @@ export class SidebarComponent {
         setTimeout(() => {
           this.isSidebarOpening = false;
         }, 1000);
-        this.showMoreOptions(false);
+        this.showMoreOptions(false, true);
       } else {
         const sidebarTexts = document.querySelectorAll('[data-sidebartext]');
         setTimeout(() => {
@@ -97,7 +97,10 @@ export class SidebarComponent {
   }
 
   // Method to show more options for the admin in sidebar
-  showMoreOptions(needToShow: boolean = true): void {
+  showMoreOptions(
+    needToShow: boolean = true,
+    closeSidebar: boolean = false
+  ): void {
     const moreOptions = document.querySelectorAll('[data-moreoptions]');
     const moreOption1 = document.getElementById('more-option1');
     const moreOption2 = document.getElementById('more-option2');
@@ -106,7 +109,6 @@ export class SidebarComponent {
       moreOption1?.classList.add('animate-slide');
       moreOption1?.classList.add('duration-300');
       setTimeout(() => {
-        moreOption1?.classList.add('animate-slide');
         moreOption1?.classList.add('translate-y-0');
         moreOption1?.classList.add('opacity-100');
 
@@ -114,12 +116,25 @@ export class SidebarComponent {
         moreOption2?.classList.add('duration-300');
       }, 300);
       setTimeout(() => {
-        moreOption2?.classList.add('animate-slide');
         moreOption2?.classList.add('translate-y-0');
         moreOption2?.classList.add('opacity-100');
       }, 600);
     } else {
       this.isAdminSidebarOpen = false;
+      if (!closeSidebar) {
+        moreOption1?.classList.remove('animate-slide');
+        moreOption1?.classList.remove('duration-300');
+        moreOption1?.classList.remove('translate-y-0');
+        moreOption1?.classList.remove('opacity-100');
+        moreOption2?.classList.remove('duration-300');
+        moreOption2?.classList.remove('animate-slide');
+        moreOption2?.classList.remove('translate-y-0');
+        moreOption2?.classList.remove('opacity-100');
+        setTimeout(() => {
+          moreOption1?.classList.add('opacity-0');
+          moreOption2?.classList.add('opacity-0');
+        }, 500);
+      }
     }
   }
 }

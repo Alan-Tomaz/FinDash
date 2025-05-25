@@ -1,0 +1,42 @@
+<div class="flex flex-col gap-4 items-center w-full h-[500px] dark:shadow-boxDark shadow-box rounded-md bg-colorSurface dark:bg-colorSurfaceDark pl-6 pr-6 pt-2 pb-2"
+    [ngClass]="theme == 'dark' ? 'dark' : 'light'">
+    <div class="flex justify-between items-center w-full">
+        <h3 class="font-bold text-2xl mt-4 text-colorText dark:text-colorTextDark w-full">Evolution Graph</h3>
+        <div class="relative flex mt-4">
+            <div class="flex gap-2 hover:cursor-pointer" (click)="handleTimeFilterToggle()">
+                <span
+                    class="text-colorText dark:text-colorTextDark w-[150px] text-end font-semibold">{{timePeriod}}</span>
+                <span class="material-icons duration-300 text-colorText dark:text-colorTextDark"
+                    [ngClass]="isTimeFilterOpen == true ? 'rotate-[-180deg]' : ''">keyboard_arrow_down</span>
+            </div>
+            <span
+                class="material-icons text-colorBg dark:text-colorBgDark text-[40px] absolute top-[32px] right-[-8px]  duration-300"
+                [ngClass]="[isTimePeriodHovering ? 'text-primaryDark dark:text-primaryDark' : '', isTimeFilterOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none']">arrow_drop_up</span>
+            <div class="absolute top-[54px] right-[-8px] flex flex-col bg-colorBg text-colorText dark:text-colorTextDark dark:bg-colorBgDark w-[130px] rounded-md dark:shadow-customDark shadow-custom transition-opacity duration-350"
+                [ngClass]="isTimeFilterOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'"
+                #timeFilter>
+                <span
+                    class="text-center w-full hover:cursor-pointer hover:bg-primaryDark hover:text-colorSurface duration-300 pt-3 pb-3 rounded-t-md border-b-[1px] dark:border-[#FFFFFF11] border-[#00000011] border-solid"
+                    (click)="isTimeFilterOpen = false" (mouseenter)="isTimePeriodHovering = true"
+                    (mouseleave)="isTimePeriodHovering = false">Last
+                    Month</span>
+                <span
+                    class="text-center w-full hover:cursor-pointer hover:bg-primaryDark hover:text-colorSurface duration-300 pt-3 pb-3  border-b-[1px] dark:border-[#FFFFFF11] border-[#00000011] border-solid"
+                    (click)="isTimeFilterOpen = false">Last 3 Months</span>
+                <span
+                    class="text-center w-full hover:cursor-pointer hover:bg-primaryDark hover:text-colorSurface duration-300 pt-3 pb-3  border-b-[1px] dark:border-[#FFFFFF11] border-[#00000011] border-solid"
+                    (click)="isTimeFilterOpen = false">Last 6 Months</span>
+                <span
+                    class="text-center w-full hover:cursor-pointer hover:bg-primaryDark hover:text-colorSurface duration-300 pt-3 pb-3 rounded-b-md  dark:border-[#FFFFFF11] border-[#00000011] border-solid"
+                    (click)="isTimeFilterOpen = false">Last Year</span>
+            </div>
+        </div>
+    </div>
+    <div class="h-full w-full">
+        <ngx-charts-line-chart class="text-colorText dark:text-colorTextDark" [scheme]="colorScheme"
+            [results]="lineData" [gradient]="false" [xAxis]="true" [yAxis]="true" [legend]="true"
+            [showXAxisLabel]="true" [showYAxisLabel]="true" [xAxisLabel]="'Time'" [yAxisLabel]="'Cash'"
+            [autoScale]="true">
+        </ngx-charts-line-chart>
+    </div>
+</div>

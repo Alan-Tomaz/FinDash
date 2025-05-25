@@ -1,0 +1,8 @@
+// Change label colors for light and dark themes
+:host ::ng-deep .light .pie-label {
+    fill: #1E293B;
+}
+  
+:host ::ng-deep .dark .pie-label {
+    fill: #F1F5F9; 
+}

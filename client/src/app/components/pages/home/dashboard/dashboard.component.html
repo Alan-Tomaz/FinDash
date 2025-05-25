@@ -1,1 +1,13 @@
-<p>dashboard works!</p>
+<section class="grid grid-cols-12 gap-[30px] w-full flex-col pl-5 pr-5 pb-8 pt-16">
+    <app-summary-card class="col-span-3" [text]="'Total Sales (Monthly)'" [value]="0" img="wallet"
+        imgColor="primaryDark"></app-summary-card>
+    <app-summary-card class="col-span-3" [text]="'Total Earnings (Monthly)'" [value]="0" img="payments"
+        imgColor="green"></app-summary-card>
+    <app-summary-card class="col-span-3" [text]="'Total Payments (Monthly)'" [value]="0" img="credit_card"
+        imgColor="red"></app-summary-card>
+    <app-summary-card class="col-span-3" [text]="'Savings Target'" [value]="0" img="savings"
+        imgColor="primary"></app-summary-card>
+    <app-pie-chart class="col-span-4" [pieData]="pieData"></app-pie-chart>
+    <app-line-chart class="col-span-8" [lineData]="lineData"></app-line-chart>
+    <app-items-list class="col-span-12"></app-items-list>
+</section>
