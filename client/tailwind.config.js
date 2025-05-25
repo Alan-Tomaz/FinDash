@@ -1,5 +1,3 @@
-const { text } = require("express")
-
 module.exports = {
     content: [
         "./src/**/*.{html,ts}",
@@ -26,7 +24,24 @@ module.exports = {
             },
             fontFamily: {
                 openSans: ['"Open Sans"', 'sans-serif'],
-            }
+            },
+            keyframes: {
+                slide: {
+                    '0%': {
+                        opacity: '0',
+                        translate: '0 -100px'
+                    },
+                    '50%': {
+                        opacity: '1'
+                    },
+                    '100%': {
+                        translate: '0 0px'
+                    }
+                }
+            },
+            animation: {
+                slide: 'slide 0.3s ease-out forwards',
+            },
         },
     },
     plugins: [],

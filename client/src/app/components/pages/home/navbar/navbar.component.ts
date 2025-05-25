@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
+import { SharedService } from '../../../../services/shared.service';
 
 @Component({
   selector: 'app-navbar',
@@ -6,4 +7,14 @@ import { Component } from '@angular/core';
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',
 })
-export class NavbarComponent {}
+export class NavbarComponent implements OnInit {
+  private sharedService = inject(SharedService);
+
+  navbarOption: string = 'Dashboard';
+
+  ngOnInit() {
+    this.sharedService.sidebarSelectedOption$.subscribe((option) => {
+      this.navbarOption = option;
+    });
+  }
+}

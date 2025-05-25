@@ -3,55 +3,88 @@
     <div id="logo" class="flex flex-row items-center h-[50px] w-full gap-5 ml-4 mt-4 mb-10 hover:cursor-pointer"
         (click)="toggleSidebar()">
         <img src="findash.png" alt="findash" class="w-auto h-[50px]" />
-        <h2 class="text-colorSurface text-4xl font-bold transition-opacity duration-300"
-            [ngClass]="sidebarOpenStatus ? 'opacity-100' : 'opacity-0'">
+        <h2 data-sidebartext class="text-colorSurface text-4xl font-bold transition-opacity duration-[250ms]">
             FinDash</h2>
     </div>
     <div id="siderbar-content">
         <div id="siderbar-content-1"
-            class="flex text-normal h-[64px] gap-5 font-medium text-colorSurface hover:cursor-pointer hover:bg-primaryDark transition-colors duration-100">
-            <div class="flex h-full w-[5px] bg-colorSurface"></div>
+            class="flex text-normal h-[64px] gap-5 font-medium text-colorSurface hover:cursor-pointer hover:bg-primaryDark transition-colors duration-100"
+            (click)="changeSidebarOption('Dashboard');  toggleSidebar(true)"
+            [ngClass]="sidebarOption != 'Dashboard' ? '' : 'bg-primaryDark'">
+            <div class="flex h-full w-[5px] bg-colorSurface duration-300"
+                [ngClass]="sidebarOption != 'Dashboard' ? 'opacity-0' : 'opacity-100'"></div>
             <div class="flex gap-3 items-center">
                 <span class="material-icons-outlined text-colorSurface text-2xl">dashboard</span>
-                <span>Dashboard</span>
+                <span class="duration-[250ms]" data-sidebartext>Dashboard</span>
             </div>
         </div>
         <div id="siderbar-content-2"
-            class="flex text-normal h-[64px] gap-5 font-medium text-colorSurface hover:cursor-pointer hover:bg-primaryDark transition-colors duration-100">
-            <div class="flex h-full w-[5px] bg-colorSurface invisible"></div>
+            class="flex text-normal h-[64px] gap-5 font-medium text-colorSurface hover:cursor-pointer hover:bg-primaryDark transition-colors duration-100"
+            (click)="changeSidebarOption('Earnings'); toggleSidebar(true)"
+            [ngClass]="sidebarOption != 'Earnings' ? '' : 'bg-primaryDark'">
+            <div class="flex h-full w-[5px] bg-colorSurface duration-300"
+                [ngClass]="sidebarOption != 'Earnings' ? 'opacity-0' : 'opacity-100'"></div>
             <div class="flex gap-3 items-center">
                 <span class="material-icons-outlined text-colorSurface text-2xl">payments</span>
-                <span>Earnings</span>
+                <span class="duration-[250ms]" data-sidebartext>Earnings</span>
             </div>
         </div>
         <div id="siderbar-content-3"
-            class="flex text-normal h-[64px] gap-5 font-medium text-colorSurface hover:cursor-pointer hover:bg-primaryDark transition-colors duration-100">
-            <div class="flex h-full w-[5px] bg-colorSurface invisible"></div>
+            class="flex text-normal h-[64px] gap-5 font-medium text-colorSurface hover:cursor-pointer hover:bg-primaryDark transition-colors duration-100"
+            (click)="changeSidebarOption('Payments'); toggleSidebar(true)"
+            [ngClass]="sidebarOption != 'Payments' ? '' : 'bg-primaryDark'">
+            <div class="flex h-full w-[5px] bg-colorSurface duration-300"
+                [ngClass]="sidebarOption != 'Payments' ? 'opacity-0' : 'opacity-100'"></div>
             <div class="flex gap-3 items-center">
                 <span class="material-icons-outlined text-colorSurface text-2xl">credit_card</span>
-                <span>Payments</span>
+                <span class="duration-[250ms]" data-sidebartext>Payments</span>
             </div>
         </div>
         <div id="siderbar-content-4"
-            class="flex text-normal h-[64px] gap-5 font-medium text-colorSurface hover:cursor-pointer hover:bg-primaryDark transition-colors duration-100">
-            <div class="flex h-full w-[5px] bg-colorSurface invisible"></div>
+            class="flex text-normal h-[64px] gap-5 font-medium text-colorSurface hover:cursor-pointer hover:bg-primaryDark transition-colors duration-100"
+            (click)="changeSidebarOption('Categories'); toggleSidebar(true)"
+            [ngClass]="sidebarOption != 'Categories' ? '' : 'bg-primaryDark'">
+            <div class="flex h-full w-[5px] bg-colorSurface duration-300"
+                [ngClass]="sidebarOption != 'Categories' ? 'opacity-0' : 'opacity-100'"></div>
             <div class="flex gap-3 items-center">
                 <span class="material-icons-outlined text-colorSurface text-2xl">sell</span>
-                <span>Categories</span>
+                <span class="duration-[250ms]" data-sidebartext>Categories</span>
             </div>
         </div>
         <div id="siderbar-content-5"
-            class="flex text-normal h-[64px] gap-5 font-medium text-colorSurface hover:cursor-pointer hover:bg-primaryDark transition-colors duration-100">
-            <div class="flex h-full w-[5px] bg-colorSurface invisible"></div>
-            <div class="flex gap-3 items-center">
-                <span class="material-icons-outlined text-colorSurface text-2xl">manage_accounts</span>
-                <span>Admin</span>
+            class="flex flex-col hover:bg-primaryDark transition-colors duration-100 hover:cursor-pointer"
+            [ngClass]="subSidebarOption != '' ? 'bg-primaryDark' : isAdminSidebarOpen != true ? '' : 'bg-primaryDark'"
+            (focus)="isAdminSidebarOpen = true" (blur)="isAdminSidebarOpen = false" tabindex="0"
+            (click)="toggleSidebar(true); showMoreOptions();">
+            <div class="flex text-normal h-[64px] gap-5 font-medium text-colorSurface">
+                <div class="flex h-full w-[5px] bg-colorSurface duration-300"
+                    [ngClass]="sidebarOption != 'Admin' ? 'opacity-0' : 'opacity-100'"></div>
+                <div class="flex justify-between items-center w-full">
+                    <div class="flex gap-3 items-center">
+                        <span class="material-icons-outlined text-colorSurface text-2xl">manage_accounts</span>
+                        <span data-sidebartext class="duration-[250ms]">Admin</span>
+                    </div>
+                    <span class="mr-8 material-icons-outlined text-colorSurface text-[20px] duration-300"
+                        [ngClass]="subSidebarOption != '' ? 'rotate-180' : isAdminSidebarOpen == true ? 'rotate-180' : 'rotate-0'"
+                        data-sidebartext>keyboard_arrow_up</span>
+                </div>
+            </div>
+            <div class="flex-col text-colorSurface text-sm"
+                [ngClass]="sidebarOpenStatus == true && (subSidebarOption != '' || isAdminSidebarOpen == true) ? 'flex' : 'hidden'">
+                <span id="more-option1" class="h-[50px] w-full pl-8 flex items-center hover:bg-[#1253BE] opacity-0"
+                    (click)="changeSidebarOption('Admin', 'Users')"
+                    [ngClass]="subSidebarOption != 'Users' ? '' : 'bg-[#1253BE]'" data-sidebartext
+                    data-moreoptions>Users</span>
+                <span id="more-option2" class="h-[50px] w-full pl-8 flex items-center hover:bg-[#1253BE]  opacity-0"
+                    (click)="changeSidebarOption('Admin', 'Logs')"
+                    [ngClass]="subSidebarOption != 'Logs' ? '' : 'bg-[#1253BE]'" data-sidebartext
+                    data-moreoptions>Logs</span>
             </div>
         </div>
     </div>
     <div class="mb-4 mt-auto text-center">
-        <span class="text-colorSurface text-[small]">Created By <a href="https://github.com/Alan-Tomaz"
-                class="hover:underline">Alan
+        <span data-sidebartext class="text-colorSurface text-[small]">Created By <a href="https://github.com/Alan-Tomaz"
+                class="hover:underline duration-[250ms]">Alan
                 Tomaz</a>.</span>
     </div>
 </aside>

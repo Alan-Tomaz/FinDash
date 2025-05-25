@@ -14,7 +14,11 @@
         </div>
     </div>
 </nav>
-<div class="w-full h-[40px] bg-colorSurface flex items-center gap-2 ml-4">
-    <span class="material-icons-outlined text-colorText text-2xl">dashboard</span>
-    <span class="font-semibold">Dashboard</span>
+<div class="w-full h-[40px] bg-colorSurface flex items-center gap-2 pl-4">
+    <span class="material-icons-outlined text-colorText text-2xl">{{navbarOption == "Dashboard" ? "dashboard" :
+        navbarOption == "Earnings" ? "payments"
+        :navbarOption == "Payments" ? "credit_card" : navbarOption == "Categories" ? "sell" : navbarOption == "Users" ?
+        "manage_accounts" : navbarOption == "Logs" ?
+        "manage_accounts" : 'dashboard'}}</span>
+    <span class="font-semibold">{{navbarOption}}</span>
 </div>
