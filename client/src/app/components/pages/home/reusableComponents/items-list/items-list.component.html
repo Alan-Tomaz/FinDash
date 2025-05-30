@@ -1,6 +1,50 @@
-<p>items-list works!</p>
-<p>items-list works!</p>
-<p>items-list works!</p>
-<p>items-list works!</p>
-<p>items-list works!</p>
-<p>items-list works!</p>
+<div
+    class="flex flex-col gap-4 items-center w-full dark:shadow-boxDark shadow-box rounded-md bg-colorSurface dark:bg-colorSurfaceDark pl-6 pr-6 pt-5 pb-5">
+    <div class="flex justify-between items-center w-full">
+        <div class="flex gap-5">
+            <div
+                class="w-[300px] flex rounded-md border-solid border-[2px] border-[#0000001a] dark:border-[#ffffff34] items-center pl-2">
+                <span class="material-icons-outlined text-[#00000088] dark:text-[#ffffffa1] text-1xl">search</span>
+                <input type="text" placeholder="Search Items"
+                    class="outline-none w-full text-[15px] placeholder:text-[.9rem] placeholder:font-semibold bg-transparent text-colorText dark:text-colorTextDark p-[.8rem]" />
+            </div>
+            <div
+                class="flex gap-1 h-full items-center border-solid border-[2px] border-[#0000001a] dark:border-[#ffffff34] rounded-md pt-[.8rem] pb-[.8rem] pl-[.7rem] pr-[.7rem] cursor-pointer hidden">
+                <span class="material-icons-outlined text-[#000000c4] dark:text-[#ffffffbd] text-1xl">filter_alt</span>
+                <span class="text-colorText dark:text-colorTextDark font-semibold text-sm">Filter</span>
+            </div>
+        </div>
+        <div class="flex gap-5">
+            <div class="flex relative">
+                <div class="flex w-[130px] h-[50px] gap-1 items-center justify-center border-[2px] border-solid border-primaryDark dark:border-primaryDark rounded-md cursor-pointer hover:bg-primaryDark text-primaryDark hover:text-colorSurface duration-300"
+                    (click)="handleShowExportDropdown()" #exportDropdown>
+                    <span class="text-inherit font-semibold  text-[.9rem]">Export</span>
+                    <span class="material-icons-outlined text-inherit text-xl transition-transform duration-300"
+                        [ngClass]="isExportDropdownOpen ? 'rotate-[-180deg]' : ''">expand_more</span>
+                </div>
+                <span
+                    class="material-icons text-colorBg dark:text-colorBgDark text-[40px] absolute top-[44px] right-[0px] duration-300"
+                    [ngClass]="[isExportDropdownHovering ? 'text-primaryDark dark:text-primaryDark' : '', isExportDropdownOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none']">arrow_drop_up</span>
+                <div class="absolute top-[66px] right-[0px] flex flex-col bg-colorBg text-colorText dark:text-colorTextDark dark:bg-colorBgDark w-[130px] rounded-md dark:shadow-customDark shadow-custom transition-opacity duration-350"
+                    id="exportDropdown"
+                    [ngClass]="isExportDropdownOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'">
+                    <span
+                        class="text-center w-full hover:cursor-pointer hover:bg-primaryDark hover:text-colorSurface duration-300 pt-3 pb-3 rounded-t-md border-b-[1px] dark:border-[#FFFFFF11] border-[#00000011] border-solid text-[.9rem] font-semibold"
+                        (mouseenter)="isExportDropdownHovering = true" (mouseleave)="isExportDropdownHovering = false"
+                        (click)="isExportDropdownOpen = false">PDF</span>
+                    <span
+                        class="text-center w-full hover:cursor-pointer hover:bg-primaryDark hover:text-colorSurface duration-300 pt-3 pb-3  border-b-[1px] dark:border-[#FFFFFF11] border-[#00000011] border-solid text-[.9rem] font-semibold"
+                        (click)="isExportDropdownOpen = false">XSLX</span>
+                    <span
+                        class="text-center w-full hover:cursor-pointer hover:bg-primaryDark hover:text-colorSurface duration-300 pt-3 pb-3 rounded-b-md border-b-[1px] dark:border-[#FFFFFF11] border-[#00000011] border-solid text-[.9rem] font-semibold"
+                        (click)="isExportDropdownOpen = false">PNG</span>
+                </div>
+            </div>
+            <div
+                class="flex w-[130px] h-[50px] items-center justify-center border-2px border-solid bg-primaryDark  rounded-md cursor-pointer  duration-300 hover:bg-primaryThemeDark">
+                <span class="text-colorSurface text-[.9rem] font-semibold">New Earning</span>
+            </div>
+        </div>
+    </div>
+    <div class="h-[500px]"></div>
+</div>
