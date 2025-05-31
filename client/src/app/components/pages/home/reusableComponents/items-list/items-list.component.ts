@@ -12,6 +12,10 @@ export class ItemsListComponent {
 
   isExportDropdownOpen: boolean = false;
   isExportDropdownHovering: boolean = false;
+  selectedIndex: number | null = null;
+  hoveredColumn: string | null = null;
+  filteredItem: string = '';
+  filterOrder: string = '';
 
   handleShowExportDropdown(): void {
     this.isExportDropdownOpen = !this.isExportDropdownOpen;
@@ -31,4 +35,29 @@ export class ItemsListComponent {
       this.isExportDropdownOpen = false;
     }
   }
+
+  selectItem(index: number): void {
+    if (index != this.selectedIndex) {
+      this.selectedIndex = index;
+    } else {
+      this.selectedIndex = null;
+    }
+  }
+
+  changeFilterItem(item: string): void {
+    if (item != this.filteredItem) {
+      this.filteredItem = item;
+      this.filterOrder = 'Descending';
+    } else {
+      if (this.filterOrder == 'Descending') {
+        this.filterOrder = 'Ascending';
+      } else {
+        this.filterOrder = 'Descending';
+      }
+    }
+  }
+
+  deleteItems(): void {}
+
+  editItems(): void {}
 }
