@@ -1,5 +1,5 @@
-<div
-    class="flex flex-col gap-4 items-center w-full dark:shadow-boxDark shadow-box rounded-md bg-colorSurface dark:bg-colorSurfaceDark pl-6 pr-6 pt-5 pb-5">
+<div class="flex flex-col gap-4 items-center w-full dark:shadow-boxDark shadow-box rounded-md bg-colorSurface dark:bg-colorSurfaceDark pl-6 pr-6 pt-5 pb-5"
+    [ngClass]="minHeight == 'viewport' ? 'h-[calc(100vh-206px)]' : ''">
     <div class="flex justify-between items-center w-full">
         <div class="flex gap-5">
             <div
@@ -9,7 +9,7 @@
                     class="outline-none w-full text-[15px] placeholder:text-[.9rem] placeholder:font-semibold bg-transparent text-colorText dark:text-colorTextDark p-[.8rem]" />
             </div>
             <div
-                class="flex gap-1 h-full items-center border-solid border-[2px] border-[#0000001a] dark:border-[#ffffff34] rounded-md pt-[.8rem] pb-[.8rem] pl-[.7rem] pr-[.7rem] cursor-pointer hidden">
+                class="gap-1 h-full items-center border-solid border-[2px] border-[#0000001a] dark:border-[#ffffff34] rounded-md pt-[.8rem] pb-[.8rem] pl-[.7rem] pr-[.7rem] cursor-pointer hidden">
                 <span class="material-icons-outlined text-[#000000c4] dark:text-[#ffffffbd] text-1xl">filter_alt</span>
                 <span class="text-colorText dark:text-colorTextDark font-semibold text-sm">Filter</span>
             </div>
@@ -22,6 +22,7 @@
                     <span class="material-icons-outlined text-inherit text-xl transition-transform duration-300"
                         [ngClass]="isExportDropdownOpen ? 'rotate-[-180deg]' : ''">expand_more</span>
                 </div>
+                @if (isExportDropdownOpen != undefined) {
                 <span
                     class="material-icons text-colorBg dark:text-colorBgDark text-[40px] absolute top-[44px] right-[0px] duration-300"
                     [ngClass]="[isExportDropdownHovering ? 'text-primaryDark dark:text-primaryDark' : '', isExportDropdownOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none']">arrow_drop_up</span>
@@ -31,18 +32,20 @@
                     <span
                         class="text-center w-full hover:cursor-pointer hover:bg-primaryDark hover:text-colorSurface duration-300 pt-3 pb-3 rounded-t-md border-b-[1px] dark:border-[#FFFFFF11] border-[#00000011] border-solid text-[.9rem] font-semibold"
                         (mouseenter)="isExportDropdownHovering = true" (mouseleave)="isExportDropdownHovering = false"
-                        (click)="isExportDropdownOpen = false">PDF</span>
+                        (click)="isExportDropdownOpen = false; exportItems('PDF')">PDF</span>
                     <span
                         class="text-center w-full hover:cursor-pointer hover:bg-primaryDark hover:text-colorSurface duration-300 pt-3 pb-3  border-b-[1px] dark:border-[#FFFFFF11] border-[#00000011] border-solid text-[.9rem] font-semibold"
-                        (click)="isExportDropdownOpen = false">XSLX</span>
+                        (click)="isExportDropdownOpen = false; exportItems('XSLX')">XSLX</span>
                     <span
                         class="text-center w-full hover:cursor-pointer hover:bg-primaryDark hover:text-colorSurface duration-300 pt-3 pb-3 rounded-b-md border-b-[1px] dark:border-[#FFFFFF11] border-[#00000011] border-solid text-[.9rem] font-semibold"
-                        (click)="isExportDropdownOpen = false">PNG</span>
+                        (click)="isExportDropdownOpen = false; exportItems('PNG')">PNG</span>
                 </div>
+                }
             </div>
-            <div
-                class="flex w-[130px] h-[50px] items-center justify-center border-2px border-solid bg-primaryDark  rounded-md cursor-pointer  duration-300 hover:bg-primaryThemeDark">
-                <span class="text-colorSurface text-[.9rem] font-semibold">New Earning</span>
+            <div class="flex w-[130px] h-[50px] items-center justify-center border-2px border-solid bg-primaryDark  rounded-md cursor-pointer  duration-300 hover:bg-primaryThemeDark"
+                (click)="handleNewItem('new')">
+                <span class="text-colorSurface text-[.9rem] font-semibold">New
+                    Earning</span>
             </div>
         </div>
     </div>
@@ -54,13 +57,13 @@
             <span class="material-icons-outlined cursor-pointer text-base" (click)="filteredItem = ''">close</span>
         </div>
         <span class="text-end text-[small] font-semibold text-colorText dark:text-colorTextDark opacity-70">Total
-            Items</span>
+            Items: <span>{{totalItems}}</span></span>
     </div>
-    <div class="h-[500px] w-full">
+    <div class="max-h-[800px] min-h-[500px] h-fit overflow-y-auto w-full">
         <div class="w-full grid gap-8 h-[70px] items-center border-solid border-t-[2px] border-[#0000001a] dark:border-[#ffffff34] text-colorText dark:text-colorTextDark pl-4 pr-4 font-semibold"
             [ngStyle]="{'grid-template-columns': 'min-content 65px 200px 100px 100px 100px 1fr 100px'}">
             <div class="h-[22px] w-[22px] rounded-md border-[2px] border-solid border-[#0000005d] dark:border-[#ffffffa6] cursor-pointer"
-                [ngClass]="selectedIndex == 0 ? 'border-[0px] bg-primaryDark' : ''" (click)="selectItem(0)">
+                [ngClass]="selectedIndex == 0 ? 'border-none bg-primaryDark' : ''" (click)="selectItem(0)">
             </div>
             <div class="flex items-center justify-center">
             </div>
@@ -120,18 +123,21 @@
                 }
             </div>
             <div class="flex justify-evenly">
-                <!--  <div class="flex w-[130px] h-[50px] gap-1 items-center justify-center bg-colorError dark:bg-colorError rounded-md cursor-pointer hover:brightness-90 text-colorSurface duration-300"
-                    (click)="deleteItems()">
+                @if (selectedIndex != null) {
+                <div class="flex w-[90px] h-[45px] gap-1 items-center justify-center bg-colorError dark:bg-colorError rounded-md cursor-pointer hover:brightness-90 text-colorSurface duration-300"
+                    (click)="handleShowAlert()">
                     <span class="text-inherit font-semibold  text-[.9rem]">Delete</span>
-                </div> -->
+                </div>
+                }
             </div>
         </div>
         <div class="flex flex-col">
             <!-- @for (item of items; track $index) {} -->
-            <div class="w-full grid gap-8 items-center border-solid border-t-[2px] border-[#0000001a] dark:border-[#ffffff34] text-colorText dark:text-colorTextDark pl-4 pr-4 pt-5 pb-5 font-semibold opacity-80"
+            <div class="w-full grid gap-8 items-center border-solid border-t-[2px] border-[#0000001a] dark:border-[#ffffff34] text-colorText dark:text-colorTextDark pl-4 pr-4 pt-5 pb-5"
                 [ngStyle]="{'grid-template-columns': 'min-content 65px 200px 100px 100px 100px 1fr 100px'}">
                 <div class="h-[22px] w-[22px] rounded-md border-[2px] border-solid border-[#0000005d] dark:border-[#ffffffa6] cursor-pointer"
-                    [ngClass]="selectedIndex == 1 ? 'border-[0px] bg-primaryDark' : ''" (click)="selectItem(1)">
+                    [ngClass]="selectedIndex == 1 || selectedIndex == 0 ? 'border-none bg-primaryDark' : ''"
+                    (click)="selectItem(1)">
                 </div>
                 <div class="flex items-center justify-center">
                     <img src="profile.png" class="w-[65px] h-[65px] object-cover rounded-full">
@@ -143,36 +149,11 @@
                 <span class="">Description</span>
                 <div class="flex justify-evenly">
                     <div
-                        class="w-[25px] h-[25px] flex justify-center items-center rounded-md bg-[#00000054] dark:bg-[#fdfdfd44] cursor-pointer duration-100 hover:bg-[#00000065] dark:hover:bg-[#fdfdfd56]">
+                        class="w-[25px] h-[25px] flex justify-center items-center rounded-md bg-[#00000041] dark:bg-[#fdfdfd36] cursor-pointer duration-100 hover:bg-[#00000065] dark:hover:bg-[#fdfdfd56]">
                         <span class="material-icons text-xl opacity-100 text-[#000000] dark:text-[#FFFFFF]">edit</span>
                     </div>
                     <div
-                        class="w-[25px] h-[25px] flex justify-center items-center rounded-md bg-[#00000054] dark:bg-[#fdfdfd44] cursor-pointer duration-100 hover:bg-[#00000065] dark:hover:bg-[#fdfdfd56] ">
-                        <span
-                            class="material-icons-outlined text-xl opacity-100 text-[#000000] dark:text-[#FFFFFF]">remove</span>
-                    </div>
-                </div>
-            </div>
-            <div class="w-full grid gap-8 items-center border-solid border-t-[2px] border-[#0000001a] dark:border-[#ffffff34] text-colorText dark:text-colorTextDark pl-4 pr-4 pt-5 pb-5 font-semibold opacity-80"
-                [ngStyle]="{'grid-template-columns': 'min-content 65px 200px 100px 100px 100px 1fr 100px'}">
-                <div class="h-[22px] w-[22px] rounded-md border-[2px] border-solid border-[#0000005d] dark:border-[#ffffffa6] cursor-pointer"
-                    [ngClass]="selectedIndex == 1 ? 'border-[0px] bg-primaryDark' : ''" (click)="selectItem(1)">
-                </div>
-                <div class="flex items-center justify-center">
-                    <img src="profile.png" class="w-[65px] h-[65px] object-cover rounded-full">
-                </div>
-                <span>Transaction</span>
-                <span>Category</span>
-                <span>Type</span>
-                <span>Value</span>
-                <span class="">Description</span>
-                <div class="flex justify-evenly">
-                    <div
-                        class="w-[25px] h-[25px] flex justify-center items-center rounded-md bg-[#00000054] dark:bg-[#fdfdfd44] cursor-pointer duration-100 hover:bg-[#00000065] dark:hover:bg-[#fdfdfd56]">
-                        <span class="material-icons text-xl opacity-100 text-[#000000] dark:text-[#FFFFFF]">edit</span>
-                    </div>
-                    <div
-                        class="w-[25px] h-[25px] flex justify-center items-center rounded-md bg-[#00000054] dark:bg-[#fdfdfd44] cursor-pointer duration-100 hover:bg-[#00000065] dark:hover:bg-[#fdfdfd56] ">
+                        class="w-[25px] h-[25px] flex justify-center items-center rounded-md bg-[#00000041] dark:bg-[#fdfdfd36] cursor-pointer duration-100 hover:bg-[#00000065] dark:hover:bg-[#fdfdfd56] ">
                         <span
                             class="material-icons-outlined text-xl opacity-100 text-[#000000] dark:text-[#FFFFFF]">remove</span>
                     </div>
@@ -181,3 +162,5 @@
         </div>
     </div>
 </div>
+<app-alert-popup *ngIf="showAlert" [isShow]=showAlert></app-alert-popup>
+<app-new-item *ngIf="showNewItemPopup" [isShow]=showNewItemPopup></app-new-item>

@@ -1,1 +1,23 @@
-<p>hero-section works!</p>
+<main class="h-[100vh] w-[100vw] flex bg-colorBg dark:bg-colorBgDark relative text-colorText dark:text-colorTextDark">
+    <div class="absolute left-[7%] top-[20%] flex flex-col gap-8 z-10">
+        <h1 class="text-[64px] font-bold">Master your <span class="text-primaryDark">finances</span><br>intelligently.
+        </h1>
+        <h4 class="font-semibold text-xl">Everything you need to plan and achieve your financial<br> freedom.
+        </h4>
+        <div class="flex gap-8">
+            <a class="flex items-center justify-center font-semibold text-xl w-[220px] h-[70px] bg-primaryDark duration-300 hover:bg-primaryThemeDark dark:bg-primaryThemeDark dark:hover:bg-primaryDarkThemeDark text-colorSurface rounded-md"
+                [routerLink]="['/home']">Start FinDash</a>
+            <a class="flex items-center justify-center font-semibold text-xl w-[220px] h-[70px] border-solid border-[2px] border-primaryDark  duration-300 hover:bg-primaryDark dark:hover:bg-primaryThemeDark text-primaryDark hover:text-colorSurface rounded-md "
+                [routerLink]="['/register']">Create an Account</a>
+        </div>
+    </div>
+    <div class="absolute translate-x-[-50%] translate-y-[-50%] top-[55%] left-[75%] w-[50%] z-0">
+        <img src="/hero-img-5.svg" class="max-w-[78%] object-cover w-full">
+        <div class="absolute h-[3rem] w-[3rem] bg-primaryDark rounded-full translate-x-[-50%] translate-y-[-50%] z-1 bottom-[115%] left-[85%]"
+            id="circle-1"></div>
+        <div class="absolute h-[3rem] w-[3rem] bg-primaryDark rounded-full translate-x-[-50%] translate-y-[-50%] z-1 bottom-[105%] left-[50%]"
+            id="circle-2"></div>
+        <div class="absolute h-[3rem] w-[3rem] bg-primaryDark rounded-full translate-x-[-50%] translate-y-[-50%] z-1 bottom-[75%] left-[90%]"
+            id="circle-3"></div>
+    </div>
+</main>

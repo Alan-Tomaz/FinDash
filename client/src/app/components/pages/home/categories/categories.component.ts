@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
+import { ItemsListComponent } from '../reusableComponents/items-list/items-list.component';
 
 @Component({
   selector: 'app-categories',
-  imports: [],
+  imports: [ItemsListComponent],
   templateUrl: './categories.component.html',
-  styleUrl: './categories.component.scss'
+  styleUrl: './categories.component.scss',
 })
-export class CategoriesComponent {
-
-}
+export class CategoriesComponent {}

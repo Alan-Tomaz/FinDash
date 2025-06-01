@@ -1,0 +1,22 @@
+<div class="fixed h-full w-full top-0 left-0 bg-[#00000033] dark:bg-[#00000046] duration-300 flex justify-center items-center"
+    [ngClass]="isShow == false ? 'hidden' : ''">
+    <div
+        class="bg-colorSurface dark:bg-colorSurfaceDark p-8 w-[400px] relative flex flex-col items-center gap-4 rounded-md text-colorText dark:text-colorTextDark">
+        <span class="material-icons absolute cursor-pointer top-[5%] right-[5%] text-3"
+            (click)="handleClosePopup()">close</span>
+        <img src="remove.png" alt="remove-item" class="w-[125px] h-[125px] mb-2 mt-[-90px]">
+        <h3 class="text-2xl font-bold">Remove Item</h3>
+        <p class="text-center">Are you sure you want to remove the following products?</p>
+        <div class="text-center"></div>
+        <div class="flex justify-around w-full mt-8">
+            <div
+                class="flex w-[130px] h-[50px] gap-1 items-center justify-center text-colorSurface rounded-md cursor-pointer  duration-300 bg-colorError dark:bg-colorError hover:brightness-90">
+                <span>Remove Items</span>
+            </div>
+            <div
+                class="flex w-[130px] h-[50px] gap-1 items-center justify-center text-colorSurface rounded-md cursor-pointer  duration-300 bg-primaryDark dark:bg-primaryThemeDark dark:hover:bg-primaryDarkThemeDark hover:bg-primaryThemeDark">
+                <span>Cancel</span>
+            </div>
+        </div>
+    </div>
+</div>

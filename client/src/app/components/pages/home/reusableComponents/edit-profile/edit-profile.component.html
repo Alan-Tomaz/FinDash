@@ -1,0 +1,104 @@
+<div class="fixed h-full w-full top-0 left-0 bg-[#00000033] duration-300 flex justify-center items-center z-[100]"
+    [ngClass]="isShow == false ? 'hidden' : ''">
+    <div
+        class="bg-colorSurface dark:bg-colorSurfaceDark p-8 relative flex flex-col items-center gap-10 rounded-md text-colorText dark:text-colorTextDark w-[600px]">
+        <span class="material-icons absolute cursor-pointer top-[5%] right-[5%] text-3"
+            (click)="handleClosePopup()">close</span>
+        <h3 class="font-bold text-2xl">Profile</h3>
+        <div class="flex items-center justify-center relative">
+            <img src="profile.png" alt="profile-img" class="w-[205px] h-[205px] object-cover rounded-full">
+            <div class="bg-[#0000004d] w-full h-full rounded-full absolute top-0 left-0 duration-300 flex justify-center items-center"
+                (mouseenter)="isAvatarHovering = true" (mouseleave)="isAvatarHovering = false"
+                [ngClass]="isAvatarHovering == true ? 'opacity-100' : 'opacity-0'">
+                <span
+                    class="material-icons-outlined cursor-pointer text-6xl opacity-70 duration-300 text-colorSurface hover:opacity-100"
+                    (click)="editAvatar.click()">add_photo_alternate</span>
+                <input type="file" hidden #editAvatar (change)="handleEditData('avatar')" class="absolute">
+            </div>
+        </div>
+        <div class="flex flex-col  w-full relative mb-2">
+            <div class="flex justify-between w-full">
+                <div class="flex items-center justify-center w-[50%] duration cursor-pointer"
+                    (click)="changeSection('view-profile')">
+                    <span class="duration-300"
+                        [ngClass]="profileSection == 'view-profile' ? 'opacity-100' : 'opacity-30'">View Profile</span>
+                </div>
+                <div class="flex items-center justify-center w-[50%] cursor-pointer"
+                    (click)="changeSection('edit-password')">
+                    <span class="duration-300"
+                        [ngClass]="profileSection == 'view-profile' ? 'opacity-30' : 'opacity-100'">Edit Password</span>
+                </div>
+            </div>
+            <div class="w-[50%] h-[4px] bg-primary duration-300 relative"
+                [ngClass]="profileSection == 'view-profile' ? 'left-[0%]' : 'left-[50%]'"></div>
+        </div>
+        <div class="flex flex-col mt-4 mb-0">
+            <div class="flex flex-col gap-5" *ngIf="visibleSection === 'view-profile'" @fadeInOut
+                (@fadeInOut.done)="onFadeDone($event)">
+                <div class="flex gap-4 items-end">
+                    <div class="flex flex-col gap-2">
+                        <span class="text-sm font-semibold ml-2">Name</span>
+                        <input type="text"
+                            class="outline-none text-[15px] placeholder:text-[.9rem] placeholder:font-semibold bg-colorBg dark:bg-colorBgDark text-colorText dark:text-colorBg pb-[.6rem] pr-[.8rem] pt-[.6rem] pl-[.8rem] rounded-md w-[250px] cursor-text duration-300"
+                            [(ngModel)]="name" [disabled]="isEditing == false && profileSection == 'view-profile'"
+                            [ngClass]="isEditing == false ? 'text-[rgba(0,0,0,0.42)] dark:text-[rgba(255,255,255,0.42)]' : 'text-colorText dark:text-colorBg'">
+                    </div>
+                    <div class="h-[60px] w-[1px] bg-[#0000001a]"></div>
+                    <div class="flex flex-col gap-2">
+                        <span class="text-sm font-semibold ml-2">Phone Number</span>
+                        <input type="text"
+                            class="outline-none text-[15px] placeholder:text-[.9rem] placeholder:font-semibold bg-colorBg dark:bg-colorBgDark text-colorText dark:text-colorBg pb-[.6rem] pr-[.8rem] pt-[.6rem] pl-[.8rem] rounded-md w-[250px] cursor-text duration-300"
+                            [(ngModel)]="phoneNumber"
+                            [disabled]="isEditing == false && profileSection == 'view-profile'"
+                            [ngClass]="isEditing == false ? 'text-[rgba(0,0,0,0.42)] dark:text-[rgba(255,255,255,0.42)]' : 'text-colorText dark:text-colorBg'">
+                    </div>
+                </div>
+                <div class="flex flex-col gap-2 w-full">
+                    <span class="text-sm font-semibold ml-2">Email</span>
+                    <input type="text"
+                        class="outline-none text-[15px] placeholder:text-[.9rem] placeholder:font-semibold bg-colorBg dark:bg-colorBgDark pb-[.6rem] pr-[.8rem] pt-[.6rem] pl-[.8rem] rounded-md w-full cursor-text duration-300"
+                        [(ngModel)]="email" [disabled]="isEditing == false && profileSection == 'view-profile'"
+                        [ngClass]="isEditing == false ? 'text-[rgba(0,0,0,0.42)] dark:text-[rgba(255,255,255,0.42)]' : 'text-colorText dark:text-colorBg'">
+                </div>
+            </div>
+            <div class="flex flex-col items-center justify-center gap-4" *ngIf="visibleSection === 'edit-password'"
+                @fadeInOut (@fadeInOut.done)="onFadeDone($event)">
+                <div class="flex flex-col gap-2">
+                    <span class="text-sm font-semibold ml-2">Password</span>
+                    <input type="password"
+                        class="outline-none text-[15px] placeholder:text-[.9rem] placeholder:font-semibold bg-colorBg dark:bg-colorBgDark text-colorText dark:text-colorBg pb-[.6rem] pr-[.8rem] pt-[.6rem] pl-[.8rem] rounded-md w-[300px] cursor-text duration-300"
+                        [(ngModel)]="password" [disabled]="isEditing == false && profileSection == 'edit-password'"
+                        [ngClass]="isEditing == false ? 'text-[rgba(0,0,0,0.42)] dark:text-[rgba(255,255,255,0.42)]' : 'text-colorText dark:text-colorBg'"
+                        (focus)="isEditing == true && password == '********' ? password = '' : ''">
+                </div>
+                <div class="flex flex-col gap-2">
+                    <span class="text-sm font-semibold ml-2">Confirm Password</span>
+                    <input type="password"
+                        class="outline-none text-[15px] placeholder:text-[.9rem] placeholder:font-semibold bg-colorBg dark:bg-colorBgDark text-colorText dark:text-colorBg pb-[.6rem] pr-[.8rem] pt-[.6rem] pl-[.8rem] rounded-md w-[300px] cursor-text duration-300"
+                        [(ngModel)]="confirmPassword"
+                        [disabled]="isEditing == false && profileSection == 'edit-password'"
+                        [ngClass]="isEditing == false ? 'text-[rgba(0,0,0,0.42)] dark:text-[rgba(255,255,255,0.42)]' : 'text-colorText dark:text-colorBg'"
+                        (focus)="isEditing == true && confirmPassword == '********' ? confirmPassword = '' : ''">
+                </div>
+            </div>
+        </div>
+        <div class="flex w-[130px] h-[50px] text-[15px] gap-2 items-center justify-center text-colorSurface rounded-md cursor-pointer  duration-300 bg-primaryDark dark:bg-primaryThemeDark dark:hover:bg-primaryDarkThemeDark hover:bg-primaryThemeDark mb-4 mt-2"
+            *ngIf="visibleSection === 'view-profile'" @fadeInOut (@fadeInOut.done)="onFadeDone($event)"
+            (click)="isEditing == true ? handleEditData('profileInfo') : handleEditMode(true)">
+            <span>Edit Profile</span>
+            <span class="material-icons text-base" *ngIf="isEditingVisible == false" @fadeInOut
+                (@fadeInOut.done)="onFadeDoneEditAnimation($event)">edit</span>
+            <span class="material-icons-outlined text-base" *ngIf="isEditingVisible == true" @fadeInOut
+                (@fadeInOut.done)="onFadeDoneEditAnimation($event)">check_circle</span>
+        </div>
+        <div class="flex w-[140px] h-[50px] text-[15px] gap-2 items-center justify-center text-colorSurface rounded-md cursor-pointer  duration-300 bg-primaryDark dark:bg-primaryThemeDark dark:hover:bg-primaryDarkThemeDark hover:bg-primaryThemeDark mb-4 mt-2"
+            *ngIf="visibleSection === 'edit-password'" @fadeInOut (@fadeInOut.done)="onFadeDone($event)"
+            (click)="isEditing == true ? handleEditData('password') : handleEditMode(true)">
+            <span>Edit Password</span>
+            <span class="material-icons text-base" *ngIf="isEditingVisible == false" @fadeInOut
+                (@fadeInOut.done)="onFadeDoneEditAnimation($event)">edit</span>
+            <span class="material-icons-outlined text-base" *ngIf="isEditingVisible == true" @fadeInOut
+                (@fadeInOut.done)="onFadeDoneEditAnimation($event)">check_circle</span>
+        </div>
+    </div>
+</div>

@@ -8,22 +8,26 @@ import {
 } from '@angular/core';
 import { SharedService } from '../../../../services/shared.service';
 import { CommonModule } from '@angular/common';
+import { EditProfileComponent } from '../reusableComponents/edit-profile/edit-profile.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
-  imports: [CommonModule],
+  imports: [CommonModule, EditProfileComponent],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',
 })
 export class NavbarComponent implements OnInit {
   private sharedService = inject(SharedService);
+  private router = inject(Router);
 
   theme: string = 'light'; // Default theme
-  navbarOption: string = 'Dashboard';
+  navbarOption: string = '';
   isEditProfileHovering: boolean = false;
   isNotificationDropdownHovering: boolean = false;
   isShowProfileDropdownOpen: boolean = false;
   isShowNotificationDropdownOpen: boolean = false;
+  isEditProfilePopupOpen: boolean = false;
 
   // ViewChild to access the dropdown elements
   @ViewChild('profileDropdown') profileDropdown!: ElementRef;
@@ -33,7 +37,41 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
     // Subscribe to the shared service to get the selected sidebar option
     this.sharedService.sidebarSelectedOption$.subscribe((option) => {
-      this.navbarOption = option;
+      if (option == '') {
+        const currentUrl = this.router.url;
+        const paths = currentUrl.split('/');
+        const currentPath = paths[paths.length - 1];
+        switch (currentPath) {
+          case 'home':
+            this.navbarOption = 'Dashboard';
+            break;
+          case 'earnings':
+            this.navbarOption = 'Earnings';
+            break;
+          case 'payments':
+            this.navbarOption = 'Payments';
+            break;
+          case 'categories':
+            this.navbarOption = 'Categories';
+            break;
+          case 'users':
+            this.navbarOption = 'Users';
+            break;
+          case 'logs':
+            this.navbarOption = 'Logs';
+            break;
+          default:
+            this.navbarOption = 'Dashboard';
+            break;
+        }
+      } else {
+        this.navbarOption = option;
+      }
+    });
+
+    // Subscribe to the shared service to get the selected show alert popup state
+    this.sharedService.showEditProfilePopup$.subscribe((option) => {
+      this.isEditProfilePopupOpen = option;
     });
 
     // Get the theme in local storage and set it (if exists)
@@ -90,5 +128,10 @@ export class NavbarComponent implements OnInit {
   handleShowNotificationsDropdown(): void {
     this.isShowNotificationDropdownOpen = !this.isShowNotificationDropdownOpen; // Toggle notification dropdown
     this.isShowProfileDropdownOpen = false; // Close profile dropdown if notifications are opened
+  }
+
+  handleOpenEditProfile(): void {
+    this.isShowProfileDropdownOpen = false;
+    this.sharedService.showEditProfilePopUp(true); // Update the edit profile visibility in the shared service
   }
 }

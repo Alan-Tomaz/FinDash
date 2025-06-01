@@ -1,1 +1,39 @@
-<p>login works!</p>
+<main class="h-[100vh] w-[100vw] flex justify-center items-center bg-primary relative text-colorText">
+    <div class="w-[90%] h-[90%] flex shadow-register bg-primaryDark">
+        <div class="w-[50%] flex justify-center items-end">
+            <img src="login.svg" alt="register-igm" class="w-[70%]">
+        </div>
+        <div class="w-[50%] bg-colorSurface flex flex-col items-center justify-center gap-10 p-8">
+            <h3 class="font-bold text-3xl text-center mb-6">Login in Your Account</h3>
+            <div class="flex flex-col w-[50%] gap-6 mt-6">
+                <div class="flex flex-col gap-2 w-full">
+                    <span class="text-sm font-semibold ml-2">Email</span>
+                    <input type="email"
+                        class="outline-none text-[15px] placeholder:text-[.9rem] placeholder:font-semibold bg-colorBg dark:bg-colorBgDark pb-[.6rem] pr-[.8rem] pt-[.6rem] pl-[.8rem] rounded-md w-full cursor-text duration-300"
+                        [(ngModel)]="email">
+                </div>
+                <div class="flex flex-col gap-2">
+                    <span class="text-sm font-semibold ml-2">Password</span>
+                    <input type="password"
+                        class="outline-none text-[15px] placeholder:text-[.9rem] placeholder:font-semibold bg-colorBg dark:bg-colorBgDark text-colorText dark:text-colorBg pb-[.6rem] pr-[.8rem] pt-[.6rem] pl-[.8rem] rounded-md cursor-text duration-300"
+                        [(ngModel)]="password">
+                </div>
+            </div>
+            <div class="flex flex-col items-center justify-center gap-10 mt-10 mb-10">
+                <div
+                    class="rounded-md flex justify-center items-center text-colorSurface bg-primaryDark hover:bg-primaryThemeDark duration-300 w-[140px] h-[50px] font-semibold cursor-pointer">
+                    Login
+                </div>
+                <span class="font-bold">OR</span>
+                <div
+                    class="flex items-center justify-center gap-4 border-solid border-[2px] h-[65px] w-[230px] rounded-[240px] border-primaryDark duration-300 cursor-pointer">
+                    <img src="google.png" alt="google" class="w-[36px] h-[36px]">
+                    <span class="">Sign
+                        in With Google</span>
+                </div>
+            </div>
+            <span>Don't have an account? <a [routerLink]="['/register']"
+                    class="text-primaryDark font-semibold hover:underline decoration-primaryDark decoration-[1px]">Register</a></span>
+        </div>
+    </div>
+</main>

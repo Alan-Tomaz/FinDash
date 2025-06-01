@@ -18,11 +18,11 @@
                 <div class="absolute bg-primary rounded-full w-[8px] h-[8px] top-0 right-[3px]"></div>
             </div>
             <span
-                class="material-icons text-colorBg dark:text-colorBgDark text-[40px] absolute top-[22px] right-[-8px]  duration-300"
-                [ngClass]="[isNotificationDropdownHovering ? 'text-primaryDark' : '', isShowNotificationDropdownOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none']">arrow_drop_up</span>
-            <div class="absolute top-[45px] right-[-8px] flex flex-col bg-colorBg dark:bg-colorBgDark w-[250px] h-[300px] rounded-md shadow-custom dark:shadow-customDark transition-opacity duration-350"
+                class="material-icons text-colorBg dark:text-colorBgDark text-[40px] absolute top-[22px] right-[-8px] opacity-0"
+                [ngClass]="[isNotificationDropdownHovering ? 'text-primaryDark' : '', isShowNotificationDropdownOpen ? 'opacity-100 pointer-events-auto duration-300' : 'opacity-0 pointer-events-none duration-300']">arrow_drop_up</span>
+            <div class="absolute top-[45px] right-[-8px] flex flex-col bg-colorBg dark:bg-colorBgDark w-[250px] h-[300px] rounded-md shadow-custom dark:shadow-customDark transition-opacity opacity-0"
                 id="notificationDropdown" #notificationDropdown
-                [ngClass]="isShowNotificationDropdownOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'">
+                [ngClass]="isShowNotificationDropdownOpen ? 'opacity-100 pointer-events-auto duration-350' : 'opacity-0 pointer-events-none duration-350'">
                 <span></span>
             </div>
         </div>
@@ -36,15 +36,15 @@
                     [ngClass]="isShowProfileDropdownOpen == true ? 'rotate-[-180deg]' : ''">keyboard_arrow_down</span>
             </div>
             <span
-                class="material-icons text-colorBg dark:text-colorBgDark text-[40px] absolute top-[32px] right-[-8px]  duration-300"
-                [ngClass]="[isEditProfileHovering ? 'text-primaryDark dark:text-primaryDark' : '', isShowProfileDropdownOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none']">arrow_drop_up</span>
-            <div class="absolute top-[54px] right-[-8px] flex flex-col bg-colorBg text-colorText dark:text-colorTextDark dark:bg-colorBgDark w-[130px] rounded-md dark:shadow-customDark shadow-custom transition-opacity duration-350"
+                class="material-icons text-colorBg dark:text-colorBgDark text-[40px] absolute top-[32px] right-[-8px] opacity-0"
+                [ngClass]="[isEditProfileHovering ? 'text-primaryDark dark:text-primaryDark' : '', isShowProfileDropdownOpen ? 'opacity-100 pointer-events-auto duration-300' : 'opacity-0 pointer-events-none duration-300']">arrow_drop_up</span>
+            <div class="absolute top-[54px] right-[-8px] flex flex-col bg-colorBg text-colorText dark:text-colorTextDark dark:bg-colorBgDark w-[130px] rounded-md dark:shadow-customDark shadow-custom transition-opacity opacity-0"
                 id="profileDropdown" #profileDropdown
-                [ngClass]="isShowProfileDropdownOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'">
+                [ngClass]="isShowProfileDropdownOpen ? 'opacity-100 pointer-events-auto duration-350' : 'opacity-0 pointer-events-none duration-350'">
                 <span
                     class="text-center w-full hover:cursor-pointer hover:bg-primaryDark hover:text-colorSurface duration-300 pt-3 pb-3 rounded-t-md border-b-[1px] dark:border-[#FFFFFF11] border-[#00000011] border-solid"
                     (mouseenter)="isEditProfileHovering = true" (mouseleave)="isEditProfileHovering = false"
-                    (click)="isShowProfileDropdownOpen = false">Edit
+                    (click)="handleOpenEditProfile()">Edit
                     Profile</span>
                 <span
                     class="text-center w-full hover:cursor-pointer hover:bg-colorError hover:text-colorSurface duration-300 pt-3 pb-3 rounded-b-md"
@@ -62,3 +62,4 @@
         "manage_accounts" : 'dashboard'}}</span>
     <span class="font-semibold text-colorText dark:text-colorTextDark">{{navbarOption}}</span>
 </div>
+<app-edit-profile [isShow]="isEditProfilePopupOpen"></app-edit-profile>

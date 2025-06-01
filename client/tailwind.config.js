@@ -57,7 +57,8 @@ module.exports = {
                 'custom': '0px 3px 3px #0003',
                 'customDark': '0px 3px 6px rgba(0, 0, 0, 0.3)',
                 'box': '1px 1px 3px #0003',
-                'boxDark': '1px 1px 4px rgba(255, 255, 255, 0.06)'
+                'boxDark': '1px 1px 4px rgba(255, 255, 255, 0.06)',
+                'register': '0px 0px 7px 3px rgba(0,0,0,0.20)',
             }
         },
     },

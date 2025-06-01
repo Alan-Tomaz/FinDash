@@ -1,54 +1,73 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedService } from '../../../../services/shared.service';
+import { RouterModule, Router } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.scss',
 })
-export class SidebarComponent {
+export class SidebarComponent implements OnInit {
+  private router = inject(Router);
   private sharedService = inject(SharedService);
 
   sidebarOpenStatus: boolean = true;
-  sidebarOption: string = 'Dashboard';
+  sidebarOption: string = '';
   subSidebarOption: string = '';
   isSidebarOpening: boolean = false;
   isAdminSidebarOpen: boolean = false;
 
-  // Method to set the sidebar option and update the sub-option
-  changeSidebarOption(option: string, suboption: string = ''): void {
-    switch (option) {
-      case 'Dashboard':
+  ngOnInit(): void {
+    const currentUrl = this.router.url;
+    const paths = currentUrl.split('/');
+    const currentPath = paths[paths.length - 1];
+    switch (currentPath) {
+      case 'home':
         this.sidebarOption = 'Dashboard';
-        this.subSidebarOption = '';
-        this.sharedService.setSelectedOption(option);
         break;
-      case 'Earnings':
+      case 'earnings':
         this.sidebarOption = 'Earnings';
-        this.subSidebarOption = suboption;
-        this.sharedService.setSelectedOption(option);
         break;
-      case 'Payments':
+      case 'payments':
         this.sidebarOption = 'Payments';
-        this.subSidebarOption = suboption;
-        this.sharedService.setSelectedOption(option);
         break;
-      case 'Categories':
+      case 'categories':
         this.sidebarOption = 'Categories';
-        this.subSidebarOption = suboption;
-        this.sharedService.setSelectedOption(option);
         break;
-      case 'Admin':
+      case 'users':
         this.sidebarOption = 'Admin';
-        this.subSidebarOption = suboption;
-        this.sharedService.setSelectedOption(suboption);
+        this.subSidebarOption = 'Users';
+        this.isAdminSidebarOpen = true;
+        this.showMoreOptions();
+        break;
+      case 'logs':
+        this.sidebarOption = 'Admin';
+        this.subSidebarOption = 'Logs';
+        this.isAdminSidebarOpen = true;
+        this.showMoreOptions();
         break;
       default:
         this.sidebarOption = 'Dashboard';
-        this.subSidebarOption = '';
-        this.sharedService.setSelectedOption(option);
+        break;
+    }
+  }
+
+  // Method to set the sidebar option and update the sub-option
+  changeSidebarOption(option: string, subOption: string = ''): void {
+    this.sidebarOption = option;
+    this.subSidebarOption = subOption;
+    if (option == 'Admin') {
+      this.sharedService.setSelectedOption(subOption);
+      if (subOption == 'Logs') {
+        this.router.navigate(['/home/admin/logs']);
+      }
+      if (subOption == 'Users') {
+        this.router.navigate(['/home/admin/users']);
+      }
+    } else {
+      this.sharedService.setSelectedOption(option);
     }
   }
 

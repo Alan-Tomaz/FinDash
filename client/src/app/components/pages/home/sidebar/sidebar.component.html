@@ -7,12 +7,15 @@
             FinDash</h2>
     </div>
     <div id="siderbar-content">
+
         <div id="siderbar-content-1"
             class="flex text-normal h-[64px] gap-5 font-medium text-colorSurface hover:cursor-pointer hover:bg-primaryDark dark:hover:bg-primaryDarkThemeDark transition-colors duration-100"
             (click)="changeSidebarOption('Dashboard');  toggleSidebar(true); showMoreOptions(false)"
-            [ngClass]="sidebarOption != 'Dashboard' ? '' : 'bg-primaryDark dark:bg-primaryDarkThemeDark'">
-            <div class="flex h-full w-[5px] bg-colorSurface duration-300"
-                [ngClass]="sidebarOption != 'Dashboard' ? 'opacity-0' : 'opacity-100'"></div>
+            [ngClass]="sidebarOption != 'Dashboard' ? '' : 'bg-primaryDark dark:bg-primaryDarkThemeDark'"
+            [routerLink]="['/home']">
+            <div class="flex h-full w-[5px] bg-colorSurface opacity-0"
+                [ngClass]="sidebarOption != 'Dashboard' ? 'opacity-0  duration-300' : 'opacity-100  duration-300'">
+            </div>
             <div class="flex gap-3 items-center">
                 <span class="material-icons-outlined text-colorSurface text-2xl">dashboard</span>
                 <span class="duration-[250ms]" data-sidebartext>Dashboard</span>
@@ -20,10 +23,11 @@
         </div>
         <div id="siderbar-content-2"
             class="flex text-normal h-[64px] gap-5 font-medium text-colorSurface hover:cursor-pointer hover:bg-primaryDark dark:hover:bg-primaryDarkThemeDark transition-colors duration-100"
-            (click)="changeSidebarOption('Earnings'); toggleSidebar(true)"
-            [ngClass]="sidebarOption != 'Earnings' ? '' : 'bg-primaryDark dark:bg-primaryDarkThemeDark'">
-            <div class="flex h-full w-[5px] bg-colorSurface duration-300"
-                [ngClass]="sidebarOption != 'Earnings' ? 'opacity-0' : 'opacity-100'"></div>
+            (click)="changeSidebarOption('Earnings'); toggleSidebar(true); showMoreOptions(false)"
+            [ngClass]="sidebarOption != 'Earnings' ? '' : 'bg-primaryDark dark:bg-primaryDarkThemeDark'"
+            [routerLink]="['/home/earnings']">
+            <div class="flex h-full w-[5px] bg-colorSurface opacity-0"
+                [ngClass]="sidebarOption != 'Earnings' ? 'opacity-0 duration-300' : 'opacity-100 duration-300'"></div>
             <div class="flex gap-3 items-center">
                 <span class="material-icons-outlined text-colorSurface text-2xl">payments</span>
                 <span class="duration-[250ms]" data-sidebartext>Earnings</span>
@@ -31,10 +35,11 @@
         </div>
         <div id="siderbar-content-3"
             class="flex text-normal h-[64px] gap-5 font-medium text-colorSurface hover:cursor-pointer hover:bg-primaryDark dark:hover:bg-primaryDarkThemeDark transition-colors duration-100"
-            (click)="changeSidebarOption('Payments'); toggleSidebar(true)"
-            [ngClass]="sidebarOption != 'Payments' ? '' : 'bg-primaryDark dark:bg-primaryDarkThemeDark'">
-            <div class="flex h-full w-[5px] bg-colorSurface duration-300"
-                [ngClass]="sidebarOption != 'Payments' ? 'opacity-0' : 'opacity-100'"></div>
+            (click)="changeSidebarOption('Payments'); toggleSidebar(true); showMoreOptions(false)"
+            [ngClass]="sidebarOption != 'Payments' ? '' : 'bg-primaryDark dark:bg-primaryDarkThemeDark'"
+            [routerLink]="['/home/payments']">
+            <div class="flex h-full w-[5px] bg-colorSurface opacity-0"
+                [ngClass]="sidebarOption != 'Payments' ? 'opacity-0 duration-300' : 'opacity-100 duration-300'"></div>
             <div class="flex gap-3 items-center">
                 <span class="material-icons-outlined text-colorSurface text-2xl">credit_card</span>
                 <span class="duration-[250ms]" data-sidebartext>Payments</span>
@@ -42,10 +47,11 @@
         </div>
         <div id="siderbar-content-4"
             class="flex text-normal h-[64px] gap-5 font-medium text-colorSurface hover:cursor-pointer hover:bg-primaryDark dark:hover:bg-primaryDarkThemeDark transition-colors duration-100"
-            (click)="changeSidebarOption('Categories'); toggleSidebar(true)"
-            [ngClass]="sidebarOption != 'Categories' ? '' : 'bg-primaryDark dark:bg-primaryDarkThemeDark'">
-            <div class="flex h-full w-[5px] bg-colorSurface duration-300"
-                [ngClass]="sidebarOption != 'Categories' ? 'opacity-0' : 'opacity-100'"></div>
+            (click)="changeSidebarOption('Categories'); toggleSidebar(true); showMoreOptions(false)"
+            [ngClass]="sidebarOption != 'Categories' ? '' : 'bg-primaryDark dark:bg-primaryDarkThemeDark'"
+            [routerLink]="['/home/categories']">
+            <div class="flex h-full w-[5px] bg-colorSurface opacity-0"
+                [ngClass]="sidebarOption != 'Categories' ? 'opacity-0 duration-300' : 'opacity-100 duration-300'"></div>
             <div class="flex gap-3 items-center">
                 <span class="material-icons-outlined text-colorSurface text-2xl">sell</span>
                 <span class="duration-[250ms]" data-sidebartext>Categories</span>
@@ -57,8 +63,8 @@
             (focus)="isAdminSidebarOpen = true" (blur)="isAdminSidebarOpen = false" tabindex="0"
             (click)="toggleSidebar(true); showMoreOptions();">
             <div class="flex text-normal h-[64px] gap-5 font-medium text-colorSurface">
-                <div class="flex h-full w-[5px] bg-colorSurface duration-300"
-                    [ngClass]="sidebarOption != 'Admin' ? 'opacity-0' : 'opacity-100'"></div>
+                <div class="flex h-full w-[5px] bg-colorSurface opacity-0"
+                    [ngClass]="sidebarOption != 'Admin' ? 'opacity-0 duration-300' : 'opacity-100 duration-300'"></div>
                 <div class="flex justify-between items-center w-full">
                     <div class="flex gap-3 items-center">
                         <span class="material-icons-outlined text-colorSurface text-2xl">manage_accounts</span>
