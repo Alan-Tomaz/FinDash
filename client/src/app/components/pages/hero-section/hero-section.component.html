@@ -1,23 +1,29 @@
-<main class="h-[100vh] w-[100vw] flex bg-colorBg dark:bg-colorBgDark relative text-colorText dark:text-colorTextDark">
-    <div class="absolute left-[7%] top-[20%] flex flex-col gap-8 z-10">
-        <h1 class="text-[64px] font-bold">Master your <span class="text-primaryDark">finances</span><br>intelligently.
+<main
+    class="flex-col gap-8 items-center sm:gap-0 sm:flex-row sm:items-start h-[100vh] w-[100vw] flex bg-colorBg dark:bg-colorBgDark relative text-colorText dark:text-colorTextDark">
+    <div
+        class="sm:absolute relative mt-8 sm:mt-0 sm:left-[3%] lg:left-[7%] sm:top-[20%] flex flex-col gap-6 sm:gap-8 z-10">
+        <h1 class="text-center sm:text-start lg:text-[64px] font-bold text-[40px]">Master your <span
+                class="text-primaryDark">finances</span><br>intelligently.
         </h1>
-        <h4 class="font-semibold text-xl">Everything you need to plan and achieve your financial<br> freedom.
+        <h4 class="text-center sm:text-start font-semibold lg:text-xl text-[1rem]">Everything you need to plan and
+            achieve your financial<br>
+            freedom.
         </h4>
-        <div class="flex gap-8">
-            <a class="flex items-center justify-center font-semibold text-xl w-[220px] h-[70px] bg-primaryDark duration-300 hover:bg-primaryThemeDark dark:bg-primaryThemeDark dark:hover:bg-primaryDarkThemeDark text-colorSurface rounded-md"
+        <div class="justify-center sm:justify-start flex gap-4 sm:gap-8">
+            <a class="flex items-center justify-center font-semibold lg:text-xl sm:text-base text-[.8rem] h-[50px] w-[130px] lg:w-[220px] sm:w-[160px] lg:h-[70px] sm:h-[60px] bg-primaryDark duration-300 hover:bg-primaryThemeDark dark:bg-primaryThemeDark dark:hover:bg-primaryDarkThemeDark text-colorSurface rounded-md"
                 [routerLink]="['/home']">Start FinDash</a>
-            <a class="flex items-center justify-center font-semibold text-xl w-[220px] h-[70px] border-solid border-[2px] border-primaryDark  duration-300 hover:bg-primaryDark dark:hover:bg-primaryThemeDark text-primaryDark hover:text-colorSurface rounded-md "
+            <a class="flex items-center justify-center font-semibold text-[.8rem] lg:text-xl sm:text-base h-[50px] w-[130px] lg:w-[220px] sm:w-[160px] lg:h-[70px] sm:h-[60px] border-solid border-[2px] border-primaryDark  duration-300 hover:bg-primaryDark dark:hover:bg-primaryThemeDark text-primaryDark hover:text-colorSurface rounded-md "
                 [routerLink]="['/register']">Create an Account</a>
         </div>
     </div>
-    <div class="absolute translate-x-[-50%] translate-y-[-50%] top-[55%] left-[75%] w-[50%] z-0">
-        <img src="/hero-img-5.svg" class="max-w-[78%] object-cover w-full">
-        <div class="absolute h-[3rem] w-[3rem] bg-primaryDark rounded-full translate-x-[-50%] translate-y-[-50%] z-1 bottom-[115%] left-[85%]"
+    <div
+        class="relative pl-4 pr-4 sm:p-0 sm:absolute sm:translate-x-[-50%] sm:translate-y-[-50%] sm:top-[55%] sm:left-[75%] w-full max-w-[300px] sm:max-w-max sm:w-[50%] z-0">
+        <img src="/hero-img-5.svg" class="sm:max-w-[78%] object-cover w-full">
+        <div class="hidden sm:flex absolute h-[3rem] w-[3rem] bg-primaryDark rounded-full translate-x-[-50%] translate-y-[-50%] z-1 bottom-[115%] left-[85%]"
             id="circle-1"></div>
-        <div class="absolute h-[3rem] w-[3rem] bg-primaryDark rounded-full translate-x-[-50%] translate-y-[-50%] z-1 bottom-[105%] left-[50%]"
+        <div class="hidden sm:flex absolute h-[3rem] w-[3rem] bg-primaryDark rounded-full translate-x-[-50%] translate-y-[-50%] z-1 bottom-[105%] left-[50%]"
             id="circle-2"></div>
-        <div class="absolute h-[3rem] w-[3rem] bg-primaryDark rounded-full translate-x-[-50%] translate-y-[-50%] z-1 bottom-[75%] left-[90%]"
+        <div class="hidden sm:flex absolute h-[3rem] w-[3rem] bg-primaryDark rounded-full translate-x-[-50%] translate-y-[-50%] z-1 bottom-[75%] left-[90%]"
             id="circle-3"></div>
     </div>
 </main>

@@ -1,11 +1,12 @@
-<main class="h-[100vh] w-[100vw] flex justify-center items-center bg-primary relative text-colorText">
-    <div class="w-[90%] h-[90%] flex shadow-register bg-primaryDark">
-        <div class="w-[50%] flex justify-center items-end">
+<main class="h-screen p-3 sm:p-0 w-[100vw] flex justify-center items-center bg-primary relative text-colorText">
+    <div class="lg:w-[90%] lg:h-[90%] w-full h-full sm:w-[95%] sm:h-[95%] flex shadow-register bg-primaryDark">
+        <div class="hidden lg:flex w-[50%] justify-center items-end">
             <img src="login.svg" alt="register-igm" class="w-[70%]">
         </div>
-        <div class="w-[50%] bg-colorSurface flex flex-col items-center justify-center gap-10 p-8">
-            <h3 class="font-bold text-3xl text-center mb-6">Login in Your Account</h3>
-            <div class="flex flex-col w-[50%] gap-6 mt-6">
+        <div
+            class="overflow-auto w-full lg:w-[50%] bg-colorSurface flex flex-col items-center justify-evenly sm:justify-center gap-4 sm:gap-10 pl-6 pr-6 pt-4 pb-6 sm:p-8">
+            <h3 class="font-bold text-3xl text-center mt-2 sm:mt-0 mb-0 sm:mb-6">Login in Your Account</h3>
+            <div class="flex flex-col w-full max-w-[450px] sm:max-w-none sm:w-[50%] gap-6 mt-6">
                 <div class="flex flex-col gap-2 w-full">
                     <span class="text-sm font-semibold ml-2">Email</span>
                     <input type="email"

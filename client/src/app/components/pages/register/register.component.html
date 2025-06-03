@@ -1,18 +1,21 @@
-<main class="h-[100vh] w-[100vw] flex justify-center items-center bg-primary relative text-colorText">
-    <div class="w-[90%] h-[90%] flex shadow-register bg-primaryDark">
-        <div class="w-[50%] flex justify-center items-center">
+<main
+    class="h-full p-3 sm:p-0 sm:h-[100vh] w-[100vw] flex justify-center items-center bg-primary relative text-colorText">
+    <div class="lg:w-[90%] lg:h-[90%] sm:h-[95%] sm:w-[95%] w-full h-full flex shadow-register bg-primaryDark">
+        <div class="w-[50%] hidden lg:flex justify-center items-center">
             <img src="register.svg" alt="register-igm" class="w-[80%]">
         </div>
-        <div class="w-[50%] bg-colorSurface flex flex-col items-center justify-between gap-6 p-8">
+        <div
+            class="w-full lg:w-[50%] bg-colorSurface flex flex-col items-center justify-between gap-6 pr-3 pt-4 pb-8 pl-3 sm:p-8 sm:pt-6 lg:pt-8">
             <h3 class="font-bold text-3xl text-center">Create an Account</h3>
-            <div class="rounded-full flex justify-center items-center relative w-[130px] h-[130px]">
+            <div
+                class="rounded-full flex justify-center items-center relative min-w-[130px] min-h-[130px] w-[130px] h-[130px]">
                 <!-- <img src="" alt="image" class="w-full object-cover rounded-full"> -->
                 <span (click)="avatar.click()"
                     class="rounded-sm flex justify-center items-center text-colorSurface bg-primaryDark hover:bg-primaryThemeDark duration-300 w-[120px] h-[40px] cursor-pointer">Add
                     a Image</span>
                 <input type="file" #avatar hidden class="absolute" />
             </div>
-            <div class="grid grid-cols-2 w-full gap-6">
+            <div class="flex flex-col sm:grid sm:grid-cols-2 w-full gap-6">
                 <div class="flex flex-col gap-2">
                     <span class="text-sm font-semibold ml-2">Name</span>
                     <input type="text"
@@ -44,7 +47,7 @@
                         [(ngModel)]="confirmPassword">
                 </div>
             </div>
-            <div class="flex flex-col items-center justify-center gap-6 mt-6 mb-6">
+            <div class="flex flex-col items-center justify-center gap-4 lg:gap-6 mt-6 mb-2 lg:mb-6">
                 <div
                     class="rounded-md flex justify-center items-center text-colorSurface bg-primaryDark hover:bg-primaryThemeDark duration-300 w-[140px] h-[50px] font-semibold cursor-pointer">
                     Create Account
