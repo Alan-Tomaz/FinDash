@@ -102,7 +102,7 @@ export class SidebarComponent implements OnInit {
           sidebarTexts.forEach((text) => {
             text.classList.remove('hidden');
           });
-        }, 300);
+        }, 400);
         setTimeout(() => {
           sidebarTexts.forEach((text) => {
             text.classList.remove('opacity-0');

@@ -1,4 +1,4 @@
-<div class="flex flex-col gap-4 items-center w-full h-[500px] dark:shadow-boxDark shadow-box rounded-md bg-colorSurface dark:bg-colorSurfaceDark pl-6 pr-6 pt-2 pb-2"
+<div class="flex flex-col gap-4 items-center w-full overflow-auto sm:overflow-hidden h-[500px] dark:shadow-boxDark shadow-box rounded-md bg-colorSurface dark:bg-colorSurfaceDark pl-6 pr-6 pt-2 pb-2"
     [ngClass]="theme == 'dark' ? 'dark' : 'light'">
     <div class="flex justify-between items-center w-full">
         <h3 class="font-bold text-2xl mt-4 text-colorText dark:text-colorTextDark w-full">Evolution Graph</h3>
@@ -34,7 +34,7 @@
             }
         </div>
     </div>
-    <div class="h-full w-full">
+    <div class="h-full w-[500px] sm:w-full">
         <ngx-charts-line-chart class="text-colorText dark:text-colorTextDark" [scheme]="colorScheme"
             [results]="lineData" [gradient]="false" [xAxis]="true" [yAxis]="true" [legend]="true"
             [showXAxisLabel]="true" [showYAxisLabel]="true" [xAxisLabel]="'Time'" [yAxisLabel]="'Cash'"

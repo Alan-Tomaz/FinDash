@@ -4,6 +4,7 @@
         @if(theme == 'light') {
         <span
             class="material-icons-outlined text-colorText dark:text-colorTextDark text-[20px] self-start mt-[7px] hover:cursor-pointer"
+            class="material-icons-outlined text-colorText dark:text-colorTextDark text-[20px] self-start mt-[7px] hover:cursor-pointer"
             (click)="handleThemeChange('dark')">
             light_mode </span>
         } @else {
@@ -20,7 +21,7 @@
             <span
                 class="material-icons text-colorBg dark:text-colorBgDark text-[40px] absolute top-[22px] right-[-8px] opacity-0"
                 [ngClass]="[isNotificationDropdownHovering ? 'text-primaryDark' : '', isShowNotificationDropdownOpen ? 'opacity-100 pointer-events-auto duration-300' : 'opacity-0 pointer-events-none duration-300']">arrow_drop_up</span>
-            <div class="absolute top-[45px] right-[-8px] flex flex-col bg-colorBg dark:bg-colorBgDark w-[250px] h-[300px] rounded-md shadow-custom dark:shadow-customDark transition-opacity opacity-0"
+            <div class="absolute top-[45px] translate-x-[-50%] sm:translate-x-0  left-[50%] sm:left-[initial] sm:right-[-8px] flex flex-col bg-colorBg dark:bg-colorBgDark w-[230px] sm:w-[250px] h-[300px] rounded-md shadow-custom dark:shadow-customDark transition-opacity opacity-0"
                 id="notificationDropdown" #notificationDropdown
                 [ngClass]="isShowNotificationDropdownOpen ? 'opacity-100 pointer-events-auto duration-350' : 'opacity-0 pointer-events-none duration-350'">
                 <span></span>
@@ -31,7 +32,8 @@
                 <div class="w-[40px] h-[40px]">
                     <img src="profile.png" alt="profile" class="rounded-full w-full h-full object-contain">
                 </div>
-                <span class="text-[14px] font-semibold text-colorText dark:text-colorTextDark">Alan Tomaz</span>
+                <span class="text-[14px] font-semibold text-colorText dark:text-colorTextDark hidden sm:flex">Alan
+                    Tomaz</span>
                 <span class="material-icons-outlined text-colorText dark:text-colorTextDark text-[20px] duration-300"
                     [ngClass]="isShowProfileDropdownOpen == true ? 'rotate-[-180deg]' : ''">keyboard_arrow_down</span>
             </div>

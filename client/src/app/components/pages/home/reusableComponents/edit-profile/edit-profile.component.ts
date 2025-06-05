@@ -37,6 +37,7 @@ export class EditProfileComponent {
   password: string = '********';
   confirmPassword: string = '********';
   avatar: string = '12345678';
+  meta: string = '0';
 
   changeSection(section: 'view-profile' | 'edit-password') {
     if (this.profileSection !== section) {

@@ -1,6 +1,6 @@
-<div class="flex flex-col gap-4 items-center w-full dark:shadow-boxDark shadow-box rounded-md bg-colorSurface dark:bg-colorSurfaceDark pl-6 pr-6 pt-5 pb-5"
+<div class="flex flex-col gap-4 items-center dark:shadow-boxDark shadow-box rounded-md bg-colorSurface dark:bg-colorSurfaceDark pl-6 pr-6 pt-5 pb-5 w-[calc(100%-70px)]"
     [ngClass]="minHeight == 'viewport' ? 'h-[calc(100vh-206px)]' : ''">
-    <div class="flex justify-between items-center w-full">
+    <div class="flex justify-between items-start gap-4 lg:gap-0 flex-col lg:flex-row lg:items-center w-full">
         <div class="flex gap-5">
             <div
                 class="w-[300px] flex rounded-md border-solid border-[2px] border-[#0000001a] dark:border-[#ffffff34] items-center pl-2">
@@ -14,7 +14,7 @@
                 <span class="text-colorText dark:text-colorTextDark font-semibold text-sm">Filter</span>
             </div>
         </div>
-        <div class="flex gap-5">
+        <div class="flex flex-col sm:flex-row gap-2 sm:gap-5">
             <div class="flex relative">
                 <div class="flex w-[130px] h-[50px] gap-1 items-center justify-center border-[2px] border-solid border-primaryDark dark:border-primaryDark rounded-md cursor-pointer hover:bg-primaryDark text-primaryDark hover:text-colorSurface duration-300"
                     (click)="handleShowExportDropdown()" #exportDropdown>
@@ -60,7 +60,7 @@
             Items: <span>{{totalItems}}</span></span>
     </div>
     <div class="max-h-[800px] min-h-[500px] h-fit overflow-y-auto w-full">
-        <div class="w-full grid gap-8 h-[70px] items-center border-solid border-t-[2px] border-[#0000001a] dark:border-[#ffffff34] text-colorText dark:text-colorTextDark pl-4 pr-4 font-semibold"
+        <div class="w-[1400px] lg:w-full grid gap-8 h-[70px] items-center border-solid border-t-[2px] border-[#0000001a] dark:border-[#ffffff34] text-colorText dark:text-colorTextDark pl-4 pr-4 font-semibold"
             [ngStyle]="{'grid-template-columns': 'min-content 65px 200px 100px 100px 100px 1fr 100px'}">
             <div class="h-[22px] w-[22px] rounded-md border-[2px] border-solid border-[#0000005d] dark:border-[#ffffffa6] cursor-pointer"
                 [ngClass]="selectedIndex == 0 ? 'border-none bg-primaryDark' : ''" (click)="selectItem(0)">
@@ -133,7 +133,7 @@
         </div>
         <div class="flex flex-col">
             <!-- @for (item of items; track $index) {} -->
-            <div class="w-full grid gap-8 items-center border-solid border-t-[2px] border-[#0000001a] dark:border-[#ffffff34] text-colorText dark:text-colorTextDark pl-4 pr-4 pt-5 pb-5"
+            <div class="w-[1400px] lg:w-full grid gap-8 items-center border-solid border-t-[2px] border-[#0000001a] dark:border-[#ffffff34] text-colorText dark:text-colorTextDark pl-4 pr-4 pt-5 pb-5"
                 [ngStyle]="{'grid-template-columns': 'min-content 65px 200px 100px 100px 100px 1fr 100px'}">
                 <div class="h-[22px] w-[22px] rounded-md border-[2px] border-solid border-[#0000005d] dark:border-[#ffffffa6] cursor-pointer"
                     [ngClass]="selectedIndex == 1 || selectedIndex == 0 ? 'border-none bg-primaryDark' : ''"

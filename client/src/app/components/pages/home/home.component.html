@@ -1,6 +1,6 @@
-<main class="h-full w-full flex bg-colorBg dark:bg-colorBgDark">
+<main class="h-full w-full overflow-auto sm:overflow-auto flex bg-colorBg dark:bg-colorBgDark">
     <app-sidebar></app-sidebar>
-    <div class="flex flex-col w-full">
+    <div class="flex flex-col w-[calc(100%-50px)] sm:w-full">
         <app-navbar></app-navbar>
         <router-outlet></router-outlet>
     </div>

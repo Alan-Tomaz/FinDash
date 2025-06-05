@@ -60,6 +60,13 @@
                         [(ngModel)]="email" [disabled]="isEditing == false && profileSection == 'view-profile'"
                         [ngClass]="isEditing == false ? 'text-[rgba(0,0,0,0.42)] dark:text-[rgba(255,255,255,0.42)]' : 'text-colorText dark:text-colorBg'">
                 </div>
+                <div class="flex flex-col gap-2 w-full items-center">
+                    <span class="text-sm font-semibold ml-2">Edit Meta</span>
+                    <input type="number"
+                        class="outline-none text-[15px] placeholder:text-[.9rem] placeholder:font-semibold bg-colorBg dark:bg-colorBgDark pb-[.6rem] pr-[.8rem] pt-[.6rem] pl-[.8rem] rounded-md cursor-text duration-300 w-[150px]"
+                        [(ngModel)]="meta" [disabled]="isEditing == false && profileSection == 'view-profile'"
+                        [ngClass]="isEditing == false ? 'text-[rgba(0,0,0,0.42)] dark:text-[rgba(255,255,255,0.42)]' : 'text-colorText dark:text-colorBg'">
+                </div>
             </div>
             <div class="flex flex-col items-center justify-center gap-4" *ngIf="visibleSection === 'edit-password'"
                 @fadeInOut (@fadeInOut.done)="onFadeDone($event)">
