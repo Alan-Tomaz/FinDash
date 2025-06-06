@@ -14,12 +14,24 @@ export class SharedService {
   private isAlertPopupOpen = new BehaviorSubject<boolean>(false); // Default value for alert popup visibility
   private isNewItemPopupOpen = new BehaviorSubject<boolean>(false); // Default value for new item popup visibility
   private isEditProfilePopupOpen = new BehaviorSubject<boolean>(false); // Default value for edit profile popup visibility
+  private isSidebarOpen = new BehaviorSubject<boolean>(
+    this.getInitialSidebarState()
+  );
 
+  isSidebarOpen$ = this.isSidebarOpen.asObservable();
   sidebarSelectedOption$ = this.sidebarSelectedOption.asObservable();
   theme$ = this.theme;
   showAlertPopup$ = this.isAlertPopupOpen.asObservable();
   showNewItemPopup$ = this.isNewItemPopupOpen.asObservable();
   showEditProfilePopup$ = this.isEditProfilePopupOpen.asObservable();
+
+  private getInitialSidebarState(): boolean {
+    return window.innerWidth >= 640;
+  }
+
+  handleSidebarOpen(option: boolean): void {
+    this.isSidebarOpen.next(option);
+  }
 
   setSelectedOption(option: string): void {
     this.sidebarSelectedOption.next(option);

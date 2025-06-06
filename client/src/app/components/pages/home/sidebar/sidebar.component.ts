@@ -2,6 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedService } from '../../../../services/shared.service';
 import { RouterModule, Router } from '@angular/router';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-sidebar',
@@ -12,14 +13,43 @@ import { RouterModule, Router } from '@angular/router';
 export class SidebarComponent implements OnInit {
   private router = inject(Router);
   private sharedService = inject(SharedService);
+  private breakpointObserver = inject(BreakpointObserver);
 
-  sidebarOpenStatus: boolean = true;
+  sidebarOpenStatus: boolean | null = true;
   sidebarOption: string = '';
   subSidebarOption: string = '';
   isSidebarOpening: boolean = false;
   isAdminSidebarOpen: boolean = false;
+  sidebarHasTransition: boolean = false;
+  sidebarTextVisible: boolean = false;
+  isSmallDevice: boolean = false;
+  sidebarReady: boolean = false;
 
   ngOnInit(): void {
+    /* Close the sidebar in small screens */
+    if (this.breakpointObserver.isMatched([Breakpoints.Handset])) {
+      this.isSmallDevice = true;
+      this.sidebarHasTransition = false;
+      this.sidebarOpenStatus = false;
+      this.sharedService.handleSidebarOpen(false);
+      /*   setTimeout(() => {
+        const sidebarTexts = document.querySelectorAll('[data-sidebartext]');
+        sidebarTexts.forEach((text) => {
+          text.classList.add('opacity-0');
+          text.classList.add('hidden');
+        });
+      }); */
+      this.isSidebarOpening = false;
+      this.showMoreOptions(false, true);
+    } else {
+      this.isSmallDevice = false;
+      this.sidebarOpenStatus = true;
+      this.sharedService.handleSidebarOpen(true);
+      this.sidebarHasTransition = true;
+    }
+    this.sidebarReady = true;
+
+    // Change the sidebar string accordingly the URL
     const currentUrl = this.router.url;
     const paths = currentUrl.split('/');
     const currentPath = paths[paths.length - 1];
@@ -72,17 +102,21 @@ export class SidebarComponent implements OnInit {
   }
 
   // Method to manipulate sidear animation and visibility
-  toggleSidebar(sidebarParam: boolean = false): void {
+  toggleSidebar(sidebarParam: boolean | null = false): void {
     if (this.isSidebarOpening == false) {
+      this.sidebarTextVisible = true;
+      this.sidebarHasTransition = true;
       this.isSidebarOpening = true;
 
       if (sidebarParam) {
         this.sidebarOpenStatus = true;
+        this.sharedService.handleSidebarOpen(true);
       } else {
         this.sidebarOpenStatus = !this.sidebarOpenStatus;
+        this.sharedService.handleSidebarOpen(this.sidebarOpenStatus);
       }
 
-      if (this.sidebarOpenStatus == false) {
+      if (this.sidebarOpenStatus == false || sidebarParam == null) {
         const sidebarTexts = document.querySelectorAll('[data-sidebartext]');
         sidebarTexts.forEach((text) => {
           text.classList.add('opacity-0');

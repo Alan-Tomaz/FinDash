@@ -1,12 +1,20 @@
-<aside class="w-[300px] transition-[width] ease duration-1000 h-full bg-primary dark:bg-primaryThemeDark flex flex-col"
-    [ngClass]="sidebarOpenStatus ? `w-[200px] sm:w-[300px]` : `w-[50px] sm:w-[80px]`">
+<aside class="ease-[ease] duration-1000 h-full bg-primary dark:bg-primaryThemeDark flex flex-col fixed z-10"
+    *ngIf="sidebarReady"
+    [ngClass]="[sidebarOpenStatus ? `w-[250px] sm:w-[300px]` : `w-[50px] sm:w-[80px]`, sidebarHasTransition ? 'transition-[width]' : '']"
+    id="sidebar">
     <div id="logo"
-        class="flex flex-row items-center h-[35px] sm:h-[50px] w-full gap-4 sm:gap-5 mb-12 mt-[.4rem] ml-[.4rem] sm:ml-4 sm:mt-4 sm:mb-10 hover:cursor-pointer"
+        class="flex flex-row items-center h-[35px] sm:h-[50px] w-full gap-4 sm:gap-5 mb-12 mt-[.6rem] ml-[.4rem] sm:ml-4 sm:mt-4 sm:mb-10 hover:cursor-pointer"
         (click)="toggleSidebar()">
         <img src="findash.png" alt="findash" class="w-auto h-[35px] sm:h-[50px]" />
+        @if (isSmallDevice) {
+        <h2 data-sidebartext
+            class="text-colorSurface text-2xl sm:text-4xl font-bold transition-opacity duration-[250ms] opacity-0 hidden">
+            FinDash</h2>
+        } @else {
         <h2 data-sidebartext
             class="text-colorSurface text-2xl sm:text-4xl font-bold transition-opacity duration-[250ms]">
             FinDash</h2>
+        }
     </div>
     <div id="siderbar-content">
 
@@ -20,7 +28,11 @@
             </div>
             <div class="flex gap-2 sm:gap-3 items-center">
                 <span class="material-icons-outlined text-colorSurface text-2xl">dashboard</span>
-                <span class="duration-[250ms]" data-sidebartext>Dashboard</span>
+                @if (isSmallDevice) {
+                <span class="duration-[250ms] transition-opacity hidden opacity-0" data-sidebartext>Dashboard</span>
+                } @else {
+                <span class="duration-[250ms] transition-opacity" data-sidebartext>Dashboard</span>
+                }
             </div>
         </div>
         <div id="siderbar-content-2"
@@ -32,7 +44,11 @@
                 [ngClass]="sidebarOption != 'Earnings' ? 'opacity-0 duration-300' : 'opacity-100 duration-300'"></div>
             <div class="flex gap-2 sm:gap-3 items-center">
                 <span class="material-icons-outlined text-colorSurface text-2xl">payments</span>
+                @if (isSmallDevice) {
+                <span class="duration-[250ms] transition-opacity hidden opacity-0" data-sidebartext>Earnings</span>
+                } @else {
                 <span class="duration-[250ms]" data-sidebartext>Earnings</span>
+                }
             </div>
         </div>
         <div id="siderbar-content-3"
@@ -44,7 +60,11 @@
                 [ngClass]="sidebarOption != 'Payments' ? 'opacity-0 duration-300' : 'opacity-100 duration-300'"></div>
             <div class="flex gap-2 sm:gap-3 items-center">
                 <span class="material-icons-outlined text-colorSurface text-2xl">credit_card</span>
-                <span class="duration-[250ms]" data-sidebartext>Payments</span>
+                @if (isSmallDevice) {
+                <span class="duration-[250ms] transition-opacity hidden opacity-0" data-sidebartext>Payments</span>
+                } @else {
+                <span class="duration-[250ms] transition-opacity" data-sidebartext>Payments</span>
+                }
             </div>
         </div>
         <div id="siderbar-content-4"
@@ -56,7 +76,12 @@
                 [ngClass]="sidebarOption != 'Categories' ? 'opacity-0 duration-300' : 'opacity-100 duration-300'"></div>
             <div class="flex gap-2 sm:gap-3 items-center">
                 <span class="material-icons-outlined text-colorSurface text-2xl">sell</span>
-                <span class="duration-[250ms]" data-sidebartext>Categories</span>
+                @if (isSmallDevice) {
+                <span class="duration-[250ms] transition-opacity hidden opacity-0" data-sidebartext>Categories</span>
+                } @else {
+                <span class="duration-[250ms] transition-opacity" data-sidebartext>Categories</span>
+
+                }
             </div>
         </div>
         <div id="siderbar-content-5"
@@ -70,11 +95,23 @@
                 <div class="flex justify-between items-center w-full">
                     <div class="flex gap-2 sm:gap-3 items-center">
                         <span class="material-icons-outlined text-colorSurface text-2xl">manage_accounts</span>
-                        <span data-sidebartext class="duration-[250ms]">Admin</span>
+                        @if (isSmallDevice) {
+                        <span data-sidebartext class="duration-[250ms] transition-opacity hidden opacity-0">Admin</span>
+                        } @else {
+                        <span data-sidebartext class="duration-[250ms] transition-opacity">Admin</span>
+                        }
                     </div>
-                    <span class="mr-8 material-icons-outlined text-colorSurface text-[20px] duration-300"
+                    @if (isSmallDevice) {
+                    <span
+                        class="mr-8 material-icons-outlined text-colorSurface text-[20px] duration-300 transition-opacity hidden opacity-0"
                         [ngClass]="subSidebarOption != '' ? 'rotate-180' : isAdminSidebarOpen == true ? 'rotate-[-180deg]' : 'rotate-0'"
                         data-sidebartext>keyboard_arrow_down</span>
+                    } @else {
+                    <span
+                        class="mr-8 material-icons-outlined text-colorSurface text-[20px] duration-300 transition-opacity"
+                        [ngClass]="subSidebarOption != '' ? 'rotate-180' : isAdminSidebarOpen == true ? 'rotate-[-180deg]' : 'rotate-0'"
+                        data-sidebartext>keyboard_arrow_down</span>
+                    }
                 </div>
             </div>
             <div class="flex-col text-colorSurface text-sm"
@@ -93,8 +130,15 @@
         </div>
     </div>
     <div class="mb-4 mt-auto text-center">
-        <span class="text-colorSurface text-[small]" data-sidebartext>Created By <a href="https://github.com/Alan-Tomaz"
-                class="hover:underline duration-[250ms]">Alan
+        @if (isSmallDevice) {
+        <span
+            class="text-colorSurface text-xs sm:text-[small] hover:underline duration-[250ms] transition-opacity opacity-0 hidden"
+            data-sidebartext>Created By <a href="https://github.com/Alan-Tomaz">Alan
                 Tomaz</a>.</span>
+        } @else {
+        <span class="text-colorSurface text-xs sm:text-[small] hover:underline duration-[250ms] transition-opacity"
+            data-sidebartext>Created By <a href="https://github.com/Alan-Tomaz">Alan
+                Tomaz</a>.</span>
+        }
     </div>
 </aside>
