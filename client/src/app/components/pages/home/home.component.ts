@@ -4,6 +4,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { RouterOutlet } from '@angular/router';
 import { SharedService } from '../../../services/shared.service';
 import { CommonModule } from '@angular/common';
+import { LoadingComponent } from './reusableComponents/loading/loading.component';
 
 @Component({
   selector: 'app-home',

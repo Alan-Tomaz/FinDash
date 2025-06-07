@@ -1,0 +1,9 @@
+<div class="absolute top-0 left-0 w-full h-full flex items-center justify-center">
+    <div class="" [ngClass]="'w-[' + size + '] h-[' + size + ']'">
+        @if (color == 'blue') {
+        <img src="loading-blue.svg" alt="loading" class="w-full object-cover h-full" />
+        } @else {
+        <img src="loading-white.svg" alt="loading" />
+        }
+    </div>
+</div>

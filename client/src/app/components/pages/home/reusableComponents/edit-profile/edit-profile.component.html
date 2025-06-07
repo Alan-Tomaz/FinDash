@@ -1,7 +1,7 @@
-<div class="fixed w-[calc(100vw-50px)] h-screen sm:w-screen top-0 left-0 bg-[#00000033] duration-300 flex justify-center items-center z-50 m-4 sm:m-0"
+<div class="fixed w-full h-full sm:h-screen sm:w-screen top-0 left-0 bg-[#00000033] duration-300 flex justify-center items-center z-50 p-3 sm:p-0"
     [ngClass]="isShow == false ? 'hidden' : ''">
     <div
-        class="bg-colorSurface dark:bg-colorSurfaceDark p-4 sm:p-8 relative flex flex-col items-center gap-10 rounded-md text-colorText dark:text-colorTextDark w-full h-full sm:w-[600px] sm:h-auto overflow-y-auto">
+        class="bg-colorSurface dark:bg-colorSurfaceDark p-4 sm:p-8 relative flex flex-col items-center gap-10 rounded-md text-colorText dark:text-colorTextDark w-full h-full sm:w-[600px] sm:h-auto overflow-auto">
         <span class="material-icons absolute cursor-pointer top-[5%] right-[5%] text-3"
             (click)="handleClosePopup()">close</span>
         <h3 class="font-bold text-2xl">Profile</h3>
@@ -33,7 +33,7 @@
             </div>
             <div class="w-[50%] h-[4px] bg-primary duration-300 relative"
                 [ngClass]="profileSection == 'view-profile' ? 'left-[0%]' : 'left-[50%]'"></div>
-            <div class="flex flex-col w-full items-center gap-8 justify-center">
+            <div class="flex flex-col w-full items-center gap-8 justify-center mt-0 sm:mt-0">
                 <div class="flex flex-col mt-4 mb-0 w-full pl-4 pr-4 items-center sm:w-auto sm:pl-0 sm:pr-0">
                     <div class="flex flex-col gap-5" *ngIf="visibleSection === 'view-profile'" @fadeInOut
                         (@fadeInOut.done)="onFadeDone($event)">
@@ -41,16 +41,16 @@
                             <div class="flex flex-col gap-2">
                                 <span class="text-sm font-semibold ml-2">Name</span>
                                 <input type="text"
-                                    class="outline-none text-[15px] placeholder:text-[.9rem] placeholder:font-semibold bg-colorBg dark:bg-colorBgDark text-colorText dark:text-colorBg pb-[.6rem] pr-[.8rem] pt-[.6rem] pl-[.8rem] rounded-md w-[250px] cursor-text duration-300"
+                                    class="outline-none text-[15px] placeholder:text-[.9rem] placeholder:font-semibold bg-colorBg dark:bg-colorBgDark pb-[.6rem] pr-[.8rem] pt-[.6rem] pl-[.8rem] rounded-md w-[250px] cursor-text duration-300"
                                     [(ngModel)]="name"
                                     [disabled]="isEditing == false && profileSection == 'view-profile'"
                                     [ngClass]="isEditing == false ? 'text-[rgba(0,0,0,0.42)] dark:text-[rgba(255,255,255,0.42)]' : 'text-colorText dark:text-colorBg'">
                             </div>
-                            <div class="h-[60px] w-[1px] bg-[#0000001a]"></div>
+                            <div class="h-[60px] w-[1px] bg-[#0000001a] hidden sm:flex"></div>
                             <div class="flex flex-col gap-2">
                                 <span class="text-sm font-semibold ml-2">Phone Number</span>
                                 <input type="text"
-                                    class="outline-none text-[15px] placeholder:text-[.9rem] placeholder:font-semibold bg-colorBg dark:bg-colorBgDark text-colorText dark:text-colorBg pb-[.6rem] pr-[.8rem] pt-[.6rem] pl-[.8rem] rounded-md w-[250px] cursor-text duration-300"
+                                    class="outline-none text-[15px] placeholder:text-[.9rem] placeholder:font-semibold bg-colorBg dark:bg-colorBgDark pb-[.6rem] pr-[.8rem] pt-[.6rem] pl-[.8rem] rounded-md w-[250px] cursor-text duration-300"
                                     [(ngModel)]="phoneNumber"
                                     [disabled]="isEditing == false && profileSection == 'view-profile'"
                                     [ngClass]="isEditing == false ? 'text-[rgba(0,0,0,0.42)] dark:text-[rgba(255,255,255,0.42)]' : 'text-colorText dark:text-colorBg'">
@@ -76,7 +76,7 @@
                         <div class="flex flex-col gap-2">
                             <span class="text-sm font-semibold ml-2">Password</span>
                             <input type="password"
-                                class="outline-none text-[15px] placeholder:text-[.9rem] placeholder:font-semibold bg-colorBg dark:bg-colorBgDark text-colorText dark:text-colorBg pb-[.6rem] pr-[.8rem] pt-[.6rem] pl-[.8rem] rounded-md w-[300px] cursor-text duration-300"
+                                class="outline-none text-[15px] placeholder:text-[.9rem] placeholder:font-semibold bg-colorBg dark:bg-colorBgDark pb-[.6rem] pr-[.8rem] pt-[.6rem] pl-[.8rem] rounded-md w-[300px] cursor-text duration-300"
                                 [(ngModel)]="password"
                                 [disabled]="isEditing == false && profileSection == 'edit-password'"
                                 [ngClass]="isEditing == false ? 'text-[rgba(0,0,0,0.42)] dark:text-[rgba(255,255,255,0.42)]' : 'text-colorText dark:text-colorBg'"
@@ -85,7 +85,7 @@
                         <div class="flex flex-col gap-2">
                             <span class="text-sm font-semibold ml-2">Confirm Password</span>
                             <input type="password"
-                                class="outline-none text-[15px] placeholder:text-[.9rem] placeholder:font-semibold bg-colorBg dark:bg-colorBgDark text-colorText dark:text-colorBg pb-[.6rem] pr-[.8rem] pt-[.6rem] pl-[.8rem] rounded-md w-[300px] cursor-text duration-300"
+                                class="outline-none text-[15px] placeholder:text-[.9rem] placeholder:font-semibold bg-colorBg dark:bg-colorBgDark pb-[.6rem] pr-[.8rem] pt-[.6rem] pl-[.8rem] rounded-md w-[300px] cursor-text duration-300"
                                 [(ngModel)]="confirmPassword"
                                 [disabled]="isEditing == false && profileSection == 'edit-password'"
                                 [ngClass]="isEditing == false ? 'text-[rgba(0,0,0,0.42)] dark:text-[rgba(255,255,255,0.42)]' : 'text-colorText dark:text-colorBg'"

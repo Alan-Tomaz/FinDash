@@ -1,7 +1,7 @@
-<div class="fixed h-full w-full top-0 left-0 bg-[#00000033] duration-300 flex justify-center items-center"
+<div class="fixed h-full w-full top-0 left-0 bg-[#00000033] duration-300 flex justify-center items-center p-3 sm:p-0 z-50"
     [ngClass]="isShow == false ? 'hidden' : ''">
     <div
-        class="bg-colorSurface dark:bg-colorSurfaceDark p-8 relative flex flex-col items-center gap-6 rounded-md text-colorText dark:text-colorTextDark">
+        class="bg-colorSurface dark:bg-colorSurfaceDark p-8 relative flex flex-col items-center gap-6 rounded-md text-colorText dark:text-colorTextDark h-full w-full sm:h-auto sm:w-auto overflow-y-auto sm:overflow-hidden">
         <span class="material-icons absolute cursor-pointer top-[5%] right-[5%] text-3"
             (click)="handleClosePopup()">close</span>
         <h3 class="w-full font-bold text-2xl">New Transaction</h3>
@@ -27,27 +27,27 @@
                     (click)="handleSelectTypeDropdown('PAYMENTS')">Payments</span>
             </div>
         </div>
-        <div class="grid gap-x-8 gap-y-6" [ngStyle]="{'grid-template-areas': `
+        <div class="flex flex-col sm:grid gap-x-8 gap-y-6 w-full max-w-[400px] sm:max-w-none" [ngStyle]="{'grid-template-areas': `
         'a c'
         'b d'
         'e d'
         `
         }">
-            <div class="flex flex-col gap-2" [ngStyle]="{'grid-area': 'a'}">
+            <div class="flex flex-col gap-2 w-full" [ngStyle]="{'grid-area': 'a'}">
                 <span class="font-semibold text-sm">Name</span>
                 <input type="text"
-                    class="ml-1 outline-none text-[15px] placeholder:text-[.9rem] placeholder:font-semibold bg-colorBg dark:bg-colorBgDark text-colorText dark:text-colorBg pb-[.7rem] pr-[.8rem] pt-[.7rem] pl-[.8rem] rounded-md min-w-[250px]"
+                    class="ml-1 outline-none text-[15px] placeholder:text-[.9rem] placeholder:font-semibold bg-colorBg dark:bg-colorBgDark text-colorText dark:text-colorBg pb-[.7rem] pr-[.8rem] pt-[.7rem] pl-[.8rem] rounded-md sm:min-w-[250px] max-w-[400px] w-full sm:w-auto sm:max-w-none"
                     [(ngModel)]="name" />
             </div>
             <div class="flex flex-col gap-2" [ngStyle]="{'grid-area': 'b'}">
                 <span class="font-semibold text-sm" [(ngModel)]="value">Value</span>
                 <input type="text"
-                    class="ml-1 outline-none text-[15px] placeholder:text-[.9rem] placeholder:font-semibold bg-colorBg dark:bg-colorBgDark text-colorText dark:text-colorBg pb-[.7rem] pr-[.8rem] pt-[.7rem] pl-[.8rem] rounded-md min-w-[250px]" />
+                    class="ml-1 outline-none text-[15px] placeholder:text-[.9rem] placeholder:font-semibold bg-colorBg dark:bg-colorBgDark text-colorText dark:text-colorBg pb-[.7rem] pr-[.8rem] pt-[.7rem] pl-[.8rem] rounded-md sm:min-w-[250px] max-w-[400px] w-full sm:w-auto sm:max-w-none" />
             </div>
             <div class="flex flex-col gap-2" [ngStyle]="{'grid-area': 'c'}">
                 <span class="font-semibold text-sm">Category</span>
                 <div class="relative">
-                    <div class="flex justify-between  ml-1 text-[15px] placeholder:text-[.9rem] placeholder:font-semibold bg-colorBg dark:bg-colorBgDark text-colorText dark:text-colorBg pb-[.7rem] pr-[.8rem] pt-[.7rem] pl-[.8rem] rounded-md min-w-[300px] hover:cursor-pointer"
+                    <div class="flex justify-between  ml-1 text-[15px] placeholder:text-[.9rem] placeholder:font-semibold bg-colorBg dark:bg-colorBgDark text-colorText dark:text-colorBg pb-[.7rem] pr-[.8rem] pt-[.7rem] pl-[.8rem] rounded-md sm:min-w-[250px] max-w-[400px] w-full sm:w-auto sm:max-w-none hover:cursor-pointer"
                         (click)="handleOpenCategoryDropdown()" #categoryDropdown>
                         <span>{{category}}</span>
                         <span class="material-icons duration-300"
@@ -56,7 +56,7 @@
                     <span
                         class="material-icons text-colorBg dark:text-colorBgDark text-[40px] absolute top-[38px] left-[0px]  duration-300"
                         [ngClass]="[isCategoryHovering ? 'text-primaryDark dark:text-primaryDark' : '', isCategoryDropdownOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none']">arrow_drop_up</span>
-                    <div class=" absolute top-[60px] left-[0px] flex flex-col bg-colorBg text-colorText dark:text-colorTextDark dark:bg-colorBgDark w-[130px] rounded-md dark:shadow-customDark shadow-custom transition-opacity duration-350"
+                    <div class=" absolute top-[60px] left-[0px] flex flex-col bg-colorBg text-colorText dark:text-colorTextDark dark:bg-colorBgDark sm:min-w-[250px] max-w-[400px] w-full sm:w-auto sm:max-w-none rounded-md dark:shadow-customDark shadow-custom transition-opacity duration-350"
                         [ngClass]="isCategoryDropdownOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'">
                         <span
                             class="text-center w-full hover:cursor-pointer hover:bg-primaryDark hover:text-colorSurface duration-300 pt-3 pb-3 rounded-t-md border-b-[1px] dark:border-[#FFFFFF11] border-[#00000011] border-solid"
@@ -67,6 +67,12 @@
                             (click)="isCategoryDropdownOpen = false; category = 'Item 2'">Item 2</span>
                     </div>
                 </div>
+            </div>
+            <div class="flex flex-col gap-2" [ngStyle]="{'grid-area': 'd'}">
+                <span class="font-semibold text-sm">Description</span>
+                <textarea
+                    class="sm:min-w-[250px] max-w-[400px] w-full sm:w-auto sm:max-w-none ml-1 outline-none text-[15px] placeholder:text-[.9rem] placeholder:font-semibold bg-colorBg dark:bg-colorBgDark text-colorText dark:text-colorBg pb-[.7rem] pr-[.8rem] pt-[.7rem] pl-[.8rem] rounded-md resize-none h-full"
+                    [(ngModel)]="description"></textarea>
             </div>
             <div class=" flex flex-col gap-6" [ngStyle]=" {'grid-area': 'e' }">
                 <div class="flex gap-2 cursor-pointer w-fit" (click)="isRecurrent = !isRecurrent">
@@ -83,15 +89,9 @@
                         #dateInput (dblclick)="openDatePicker($event)" [(ngModel)]="date" />
                 </div>
             </div>
-            <div class="flex flex-col gap-2" [ngStyle]="{'grid-area': 'd'}">
-                <span class="font-semibold text-sm">Description</span>
-                <textarea
-                    class="min-w-[250px] ml-1 outline-none text-[15px] placeholder:text-[.9rem] placeholder:font-semibold bg-colorBg dark:bg-colorBgDark text-colorText dark:text-colorBg pb-[.7rem] pr-[.8rem] pt-[.7rem] pl-[.8rem] rounded-md resize-none h-full"
-                    [(ngModel)]="description"></textarea>
-            </div>
         </div>
         <div
-            class="flex w-[150px] h-[55px] gap-1 items-center justify-center text-colorSurface rounded-md cursor-pointer  duration-300 bg-primaryDark dark:bg-primaryThemeDark dark:hover:bg-primaryDarkThemeDark hover:bg-primaryThemeDark mt-8">
+            class="flex min-h-[55px] sm:min-h-0 w-[150px] h-[55px] gap-1 items-center justify-center text-colorSurface rounded-md cursor-pointer  duration-300 bg-primaryDark dark:bg-primaryThemeDark dark:hover:bg-primaryDarkThemeDark hover:bg-primaryThemeDark mt-8">
             <span>Add Transaction</span>
         </div>
     </div>
