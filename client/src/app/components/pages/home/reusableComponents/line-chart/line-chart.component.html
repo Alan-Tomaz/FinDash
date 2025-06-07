@@ -1,9 +1,9 @@
-<div class="flex flex-col gap-4 items-center w-full overflow-auto sm:overflow-hidden h-[500px] dark:shadow-boxDark shadow-box rounded-md bg-colorSurface dark:bg-colorSurfaceDark pl-6 pr-6 pt-2 pb-2"
+<div class="flex flex-col gap-4 items-center w-full h-[500px] overflow-x-auto dark:shadow-boxDark shadow-box rounded-md bg-colorSurface dark:bg-colorSurfaceDark pl-6 pr-6 pt-2 pb-2"
     [ngClass]="theme == 'dark' ? 'dark' : 'light'">
-    <div class="flex justify-between items-center w-full">
+    <div class="flex justify-between items-center w-full gap-4">
         <h3 class="font-bold text-2xl mt-4 text-colorText dark:text-colorTextDark w-full">Evolution Graph</h3>
         <div class="relative flex mt-4">
-            <div class="flex gap-2 hover:cursor-pointer" (click)="handleTimeFilterToggle()">
+            <div class="flex gap-2 hover:cursor-pointer pr-2 sm:pr-0 " (click)="handleTimeFilterToggle()">
                 <span
                     class="text-colorText dark:text-colorTextDark w-[150px] text-end font-semibold">{{timePeriod}}</span>
                 <span class="material-icons duration-300 text-colorText dark:text-colorTextDark"
@@ -11,9 +11,9 @@
             </div>
             @if (isTimeFilterOpen !== undefined) {
             <span
-                class="material-icons text-colorBg dark:text-colorBgDark text-[40px] absolute top-[32px] right-[-8px] opacity-0"
+                class="material-icons text-colorBg dark:text-colorBgDark text-[40px] absolute top-[32px] right-[12px] sm:right-[-8px] opacity-0"
                 [ngClass]="[isTimePeriodHovering ? 'text-primaryDark dark:text-primaryDark' : '', isTimeFilterOpen ? 'opacity-100 pointer-events-auto duration-300' : 'opacity-0 pointer-events-none duration-300']">arrow_drop_up</span>
-            <div class="absolute top-[54px] right-[-8px] flex flex-col bg-colorBg text-colorText dark:text-colorTextDark dark:bg-colorBgDark w-[130px] rounded-md dark:shadow-customDark shadow-custom transition-opacity opacity-0"
+            <div class="absolute top-[54px] left-[25%] sm:right-[-8px] flex flex-col bg-colorBg text-colorText dark:text-colorTextDark dark:bg-colorBgDark w-[130px] rounded-md dark:shadow-customDark shadow-custom transition-opacity opacity-0"
                 [ngClass]="isTimeFilterOpen ? 'opacity-100 pointer-events-auto duration-350' : 'opacity-0 pointer-events-none duration-350'"
                 #timeFilter>
                 <span
@@ -34,11 +34,13 @@
             }
         </div>
     </div>
-    <div class="h-full w-[800px] sm:w-full">
-        <ngx-charts-line-chart class="text-colorText dark:text-colorTextDark" [scheme]="colorScheme"
-            [results]="lineData" [gradient]="false" [xAxis]="true" [yAxis]="true" [legend]="true"
-            [showXAxisLabel]="true" [showYAxisLabel]="true" [xAxisLabel]="'Time'" [yAxisLabel]="'Cash'"
-            [autoScale]="true">
-        </ngx-charts-line-chart>
+    <div class="flex w-full h-full overflow-auto">
+        <div class="h-full w-full min-w-[800px]">
+            <ngx-charts-line-chart class="text-colorText dark:text-colorTextDark" [scheme]="colorScheme"
+                [results]="lineData" [gradient]="false" [xAxis]="true" [yAxis]="true" [legend]="true"
+                [showXAxisLabel]="true" [showYAxisLabel]="true" [xAxisLabel]="'Time'" [yAxisLabel]="'Cash'"
+                [autoScale]="true">
+            </ngx-charts-line-chart>
+        </div>
     </div>
 </div>

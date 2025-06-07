@@ -1,9 +1,9 @@
-<div class="flex flex-col gap-4 items-center dark:shadow-boxDark shadow-box rounded-md bg-colorSurface dark:bg-colorSurfaceDark pl-6 pr-6 pt-5 pb-5 w-[calc(100%-70px)]"
+<div class="flex flex-col gap-4 items-center dark:shadow-boxDark shadow-box rounded-md bg-colorSurface dark:bg-colorSurfaceDark pl-6 pr-6 pt-5 pb-5 w-full"
     [ngClass]="minHeight == 'viewport' ? 'h-[calc(100vh-206px)]' : ''">
     <div class="flex justify-between items-start gap-4 lg:gap-0 flex-col lg:flex-row lg:items-center w-full">
-        <div class="flex gap-5">
+        <div class="flex gap-5 w-full">
             <div
-                class="w-[300px] flex rounded-md border-solid border-[2px] border-[#0000001a] dark:border-[#ffffff34] items-center pl-2">
+                class="w-full sm:w-[300px] flex rounded-md border-solid border-[2px] border-[#0000001a] dark:border-[#ffffff34] items-center pl-2">
                 <span class="material-icons-outlined text-[#00000088] dark:text-[#ffffffa1] text-1xl">search</span>
                 <input type="text" placeholder="Search Items"
                     class="outline-none w-full text-[15px] placeholder:text-[.9rem] placeholder:font-semibold bg-transparent text-colorText dark:text-colorTextDark p-[.8rem]" />
@@ -24,15 +24,16 @@
                 </div>
                 @if (isExportDropdownOpen != undefined) {
                 <span
-                    class="material-icons text-colorBg dark:text-colorBgDark text-[40px] absolute top-[44px] right-[0px] duration-300"
-                    [ngClass]="[isExportDropdownHovering ? 'text-primaryDark dark:text-primaryDark' : '', isExportDropdownOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none']">arrow_drop_up</span>
-                <div class="absolute top-[66px] right-[0px] flex flex-col bg-colorBg text-colorText dark:text-colorTextDark dark:bg-colorBgDark w-[130px] rounded-md dark:shadow-customDark shadow-custom transition-opacity duration-350"
+                    class="material-icons text-colorBg dark:text-colorBgDark text-[40px] absolute top-[44px] right-[0px] opacity-0"
+                    [ngClass]="[isExportDropdownHovering ? 'text-primaryDark dark:text-primaryDark' : '', isExportDropdownOpen ? 'opacity-100 pointer-events-auto duration-[300ms]' : 'opacity-0 pointer-events-none duration-[150ms]']">arrow_drop_up</span>
+                <div class="absolute top-[66px] right-[0px] flex flex-col bg-colorBg text-colorText dark:text-colorTextDark dark:bg-colorBgDark w-[130px] rounded-md dark:shadow-customDark shadow-custom transition-opacity opacity-0 z-10"
                     id="exportDropdown"
-                    [ngClass]="isExportDropdownOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'">
+                    [ngClass]="isExportDropdownOpen ? 'opacity-100 pointer-events-auto duration-[300ms]' : 'opacity-0 pointer-events-none duration-[300ms]'">
                     <span
                         class="text-center w-full hover:cursor-pointer hover:bg-primaryDark hover:text-colorSurface duration-300 pt-3 pb-3 rounded-t-md border-b-[1px] dark:border-[#FFFFFF11] border-[#00000011] border-solid text-[.9rem] font-semibold"
                         (mouseenter)="isExportDropdownHovering = true" (mouseleave)="isExportDropdownHovering = false"
-                        (click)="isExportDropdownOpen = false; exportItems('PDF')">PDF</span>
+                        (touchstart)="isExportDropdownHovering = true" (touchend)="isExportDropdownHovering = true"
+                        (click)="isExportDropdownOpen = false; exportItems('PDF'); ">PDF</span>
                     <span
                         class="text-center w-full hover:cursor-pointer hover:bg-primaryDark hover:text-colorSurface duration-300 pt-3 pb-3  border-b-[1px] dark:border-[#FFFFFF11] border-[#00000011] border-solid text-[.9rem] font-semibold"
                         (click)="isExportDropdownOpen = false; exportItems('XSLX')">XSLX</span>
@@ -60,7 +61,7 @@
             Items: <span>{{totalItems}}</span></span>
     </div>
     <div class="max-h-[800px] min-h-[500px] h-fit overflow-y-auto w-full">
-        <div class="w-[1400px] lg:w-full grid gap-8 h-[70px] items-center border-solid border-t-[2px] border-[#0000001a] dark:border-[#ffffff34] text-colorText dark:text-colorTextDark pl-4 pr-4 font-semibold"
+        <div class="w-full min-w-[1300px] sm:min-w-[1300px] lg:min-w-[1300px] xl:min-w-0 grid gap-8 h-[70px] items-center border-solid border-t-[2px] border-[#0000001a] dark:border-[#ffffff34] text-colorText dark:text-colorTextDark pl-4 pr-4 font-semibold"
             [ngStyle]="{'grid-template-columns': 'min-content 65px 200px 100px 100px 100px 1fr 100px'}">
             <div class="h-[22px] w-[22px] rounded-md border-[2px] border-solid border-[#0000005d] dark:border-[#ffffffa6] cursor-pointer"
                 [ngClass]="selectedIndex == 0 ? 'border-none bg-primaryDark' : ''" (click)="selectItem(0)">
@@ -133,7 +134,7 @@
         </div>
         <div class="flex flex-col">
             <!-- @for (item of items; track $index) {} -->
-            <div class="w-[1400px] lg:w-full grid gap-8 items-center border-solid border-t-[2px] border-[#0000001a] dark:border-[#ffffff34] text-colorText dark:text-colorTextDark pl-4 pr-4 pt-5 pb-5"
+            <div class="w-full min-w-[1300px] sm:min-w-[1300px] lg:min-w-[1300px] xl:min-w-0 grid gap-8 items-center border-solid border-t-[2px] border-[#0000001a] dark:border-[#ffffff34] text-colorText dark:text-colorTextDark pl-4 pr-4 pt-5 pb-5"
                 [ngStyle]="{'grid-template-columns': 'min-content 65px 200px 100px 100px 100px 1fr 100px'}">
                 <div class="h-[22px] w-[22px] rounded-md border-[2px] border-solid border-[#0000005d] dark:border-[#ffffffa6] cursor-pointer"
                     [ngClass]="selectedIndex == 1 || selectedIndex == 0 ? 'border-none bg-primaryDark' : ''"

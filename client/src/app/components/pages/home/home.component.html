@@ -1,7 +1,7 @@
 <main class="h-full w-full overflow-auto sm:overflow-auto flex bg-colorBg dark:bg-colorBgDark"
     *ngIf="isSidebarOpen != null">
     <app-sidebar></app-sidebar>
-    <div class="flex flex-col w-[calc(100%)] sm:w-full duration-1000 ease-[ease]"
+    <div class="flex flex-col w-full sm:w-full duration-1000 ease-[ease]"
         [ngClass]="isSidebarOpen == true ? 'pl-[250px] sm:pl-[300px]' : isSidebarOpen == false ? 'pl-[50px] sm:pl-[80px]' : ''">
         <app-navbar></app-navbar>
         <router-outlet></router-outlet>

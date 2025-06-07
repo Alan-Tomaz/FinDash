@@ -1,10 +1,13 @@
 <div class="flex flex-col gap-2 items-center w-full h-[500px] dark:shadow-boxDark shadow-box rounded-md bg-colorSurface dark:bg-colorSurfaceDark pl-6 pr-6 pt-2 pb-2"
     [ngClass]="theme == 'dark' ? 'dark' : 'light'">
     <h3 class="font-bold text-2xl mt-4 text-colorText dark:text-colorTextDark">Expenses By Category</h3>
-    <div class="w-full h-full">
-        <ngx-charts-pie-chart class="text-colorText dark:text-colorTextDark" [results]="pieData" [legend]="showLegend"
-            [labels]="showLabels" [doughnut]="isDoughnut" [scheme]="colorScheme" [explodeSlices]="false"
-            [animations]="true" [legendPosition]="legendPosition" [tooltipDisabled]="tooltipDisabled">
-        </ngx-charts-pie-chart>
+    <div class="flex w-full h-full overflow-x-auto">
+        <div class="w-full h-full min-w-[400px]">
+            <ngx-charts-pie-chart class="text-colorText dark:text-colorTextDark" [results]="pieData"
+                [legend]="showLegend" [labels]="showLabels" [doughnut]="isDoughnut" [scheme]="colorScheme"
+                [explodeSlices]="false" [animations]="true" [legendPosition]="legendPosition"
+                [tooltipDisabled]="tooltipDisabled">
+            </ngx-charts-pie-chart>
+        </div>
     </div>
 </div>

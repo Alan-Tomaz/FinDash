@@ -1,5 +1,5 @@
 <nav
-    class="min-w-100% w-full h-[70px] bg-colorSurface dark:bg-colorSurfaceDark flex border-b-[2px] border-[#00000011] dark:border-[#FFFFFF11] border-solid items-center justify-end px-4">
+    class="min-w-100% w-[calc(100vw-50px)] sm:w-full h-[70px] bg-colorSurface dark:bg-colorSurfaceDark flex border-b-[2px] border-[#00000011] dark:border-[#FFFFFF11] border-solid items-center justify-end px-4">
     <div class="flex gap-4 items-center">
         @if(theme == 'light') {
         <span
@@ -55,7 +55,8 @@
         </div>
     </div>
 </nav>
-<div class="w-full h-[40px] bg-colorSurface dark:bg-colorSurfaceDark flex items-center gap-2 pl-4">
+<div
+    class="w-[calc(100vw-50px)] sm:w-full h-[40px] bg-colorSurface dark:bg-colorSurfaceDark flex items-center gap-2 pl-4">
     <span class="material-icons-outlined text-colorText dark:text-colorTextDark text-2xl">{{navbarOption == "Dashboard"
         ? "dashboard" :
         navbarOption == "Earnings" ? "payments"
