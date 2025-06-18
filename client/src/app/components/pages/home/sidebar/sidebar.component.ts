@@ -70,13 +70,17 @@ export class SidebarComponent implements OnInit {
         this.sidebarOption = 'Admin';
         this.subSidebarOption = 'Users';
         this.isAdminSidebarOpen = true;
-        this.showMoreOptions();
+        setTimeout(() => {
+          this.showMoreOptions();
+        }, 0);
         break;
       case 'logs':
         this.sidebarOption = 'Admin';
         this.subSidebarOption = 'Logs';
         this.isAdminSidebarOpen = true;
-        this.showMoreOptions();
+        setTimeout(() => {
+          this.showMoreOptions();
+        }, 0);
         break;
       default:
         this.sidebarOption = 'Dashboard';
